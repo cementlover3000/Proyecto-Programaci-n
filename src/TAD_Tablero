@@ -45,3 +45,36 @@ bool columnaEstaLlena(Tablero t,int columna){
     }
     return estaLlena;
 }
+
+bool tableroEstaLleno(Tablero t){
+    bool estaLleno;
+    estaLleno=true;
+    int i;
+    int j;
+    for(i=0;i<COLUMNAS;i++){
+   	 for(j=0;j<FILAS;j++){
+   		 if(estaVacia(t.tablero[i][j])){
+   			 estaLleno=false;
+   		 }
+   	 }
+    }
+    return estaLleno;
+}
+
+void eliminarCasillasVaciasIntermedias(Tablero &t, int columna){
+    int i;
+    int cuantos;
+    cuantos=0;
+    for(i=0;i<FILAS;i++){
+   	 if(estaVacia(t.tablero[i][columna])){
+   		 cuantos=cuantos+1;
+   	 }
+   	 else{
+   		 t.tablero[i-cuantos][columna]=t.tablero[i][columna];
+   	 }
+    }
+    t.ocupadas=t.ocupadas-cuantos;
+}
+
+
+
