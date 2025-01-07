@@ -71,5 +71,25 @@ void eliminarCasillasVaciasIntermedias(Tablero &t, int columna){
     t.ocupadas=t.ocupadas-cuantos;
 }
 
+bool casillaEstaVacia(Tablero t, int fila, int columna){
+    bool vacia;
+    if(estaVacia(t.tablero[fila][columna])){
+   	 vacia=true;
+    }
+    else{
+   	 vacia=false;
+    }
+    return vacia;
+}
+
+void vaciarCasillaTablero(Tablero &t, int fila, int columna){
+    int i;
+    for(i=fila+1;i<FILAS;i++){
+   	 t.tablero[i-1][columna]=t.tablero[i][columna];
+    }
+    t.ocupadas=t.ocupadas-1;
+}
+
+
 
 
