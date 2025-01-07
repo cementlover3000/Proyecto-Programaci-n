@@ -3,9 +3,9 @@
  * FUNDAMENTOS DE PROGRAMACIÓN
  *  Curso 2024/2025
 
-    Nombre: TAD_Casilla.cpp
+    Nombre: TAD_Casilla.h
     Descripción: Especificación del TAD Casilla para el proyecto Number Tiles
-    		       encargado de gestionar la información de una casilla del tablero.
+    encargado de gestionar la información de una casilla del tablero.
 
     Autor: Alejandro Bravo González y Alejandro Pulido Rodríguez
 
@@ -34,7 +34,15 @@ bool estaVacia(Casilla c);
 
 //PRE:{}
 //POST:{borra la información almacenada en una casilla}
+void vaciarCasilla(Casilla &c);
 
+//PRE:{}
+//POST:{inserta el valor n en la casilla}
+void insertarValor(Casilla &c, int n);
+
+//PRE:{}
+//POST:{devuelve el valor almacenado en la casilla}
+int devolverValor(Casilla c);
 
 #endif /* NUMBERTILES_H_ */
 
