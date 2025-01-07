@@ -42,6 +42,6 @@ void insertarValor(Casilla &c, int n);
 //POST:{devuelve el valor almacenado en la casilla}
 int devolverValor(Casilla c);
 
-#endif /* NUMBERTILES_H_ */
+#endif 
 
 
