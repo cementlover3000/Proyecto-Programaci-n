@@ -4,9 +4,9 @@
  *  Curso 2024/2025
 
     Nombre: TAD_Tablero.cpp
-    Descripción: Implemetación del TAD Casilla para el proyecto Number Tiles
-    		       encargado de gestionar la información de una casilla del tablero.
-    		       Versión de allegro 5
+    Descripción: Implemetación del TAD Tablero para el proyecto Number Tiles
+    encargado de gestionar la información almacenada en el tablero.
+    		       
     Autor: Alejandro Bravo González y Alejandro Pulido Rodríguez
 
  *
@@ -19,7 +19,7 @@ using namespace std;
 
 
 void insertarValorTablero(Tablero &t,int n, int fila,int columna){
-    ponerValorCasilla(t.tablero[fila][columna])=n;
+    insertarValorCasilla(t.tablero[fila][columna])=n;
     t.ocupadas=t.ocupadas+1;
 }
 
