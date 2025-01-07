@@ -15,6 +15,13 @@
 #ifndef NUMBERTILES_H_
 #define NUMBERTILES_H_
 
+const int MAX=1;
+typedef int tVector[MAX];
+struct Casilla{
+    tVector vector;
+    int ocupadas;
+};
+
 //PRE:{}
 //POST:{inicia la casilla vacia}
 
