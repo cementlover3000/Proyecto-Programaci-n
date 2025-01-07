@@ -36,12 +36,12 @@ void vaciarCasilla(Casilla &c){
     c.ocupadas=0;
 }
 
-void insertarValor(Casilla &c, int n){
+void insertarValorCasilla(Casilla &c, int n){
     c.vector[0]=n;
     c.ocupadas=c.ocupadas+1;
 }
 
-int devolverValor(Casilla c){
+int devolverValorCasilla(Casilla c){
     int valor;
     valor=c.vector[0];
     return valor;
