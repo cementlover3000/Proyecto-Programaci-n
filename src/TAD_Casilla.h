@@ -24,12 +24,10 @@ struct Casilla{
 
 //PRE:{}
 //POST:{inicia la casilla vacia}
-
 void iniciar(Casilla &c);
 
 //PRE:{}
 //POST:{devuelve true si la casilla está vacía y false si está llena}
-
 bool estaVacia(Casilla c);
 
 //PRE:{}
