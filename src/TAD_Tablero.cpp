@@ -13,15 +13,10 @@
  */
 
 #include <iostream>
+#include "TAD_Tablero.h"
 using namespace std;
 
-const int FILAS=7;
-const int COLUMNAS=7;
-typedef Casilla tMatriz[FILAS][COLUMNAS];
-struct Tablero{
-    tMatriz tablero;
-    int ocupadas;
-};
+
 
 void insertarValorTablero(Tablero &t,int n, int fila,int columna){
     ponerValorCasilla(t.tablero[fila][columna])=n;
