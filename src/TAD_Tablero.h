@@ -15,6 +15,14 @@
 #ifndef NUMBERTILES_H_
 #define NUMBERTILES_H_
 
+const int FILAS=7;
+const int COLUMNAS=7;
+typedef Casilla tMatriz[FILAS][COLUMNAS];
+struct Tablero{
+    tMatriz tablero;
+    int ocupadas;
+};
+
 //PRE:{n tiene que ser múltiplo de 2, 0<=fila<7, 0<=columna<7}
 //POST:{inserta el valor n en la casilla del tablero indicada por fila y columna}
 void insertarValorTablero(Tablero &t,int n, int fila,int columna);
