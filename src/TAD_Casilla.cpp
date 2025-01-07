@@ -13,14 +13,9 @@
  */
 
 #include <iostream>
+#include "TAD_Casilla.h"
 using namespace std;
 
-const int MAX=1;
-typedef int tVector[MAX];
-struct Casilla{
-    tVector vector;
-    int ocupadas;
-};
 
 void iniciar(Casilla &c){
     c.ocupadas=0;
