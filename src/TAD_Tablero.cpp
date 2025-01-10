@@ -100,6 +100,10 @@ int filaPrimeraCasillaVacia(Tablero t,int columna){
    	 if(estaVacia(t.tablero[i][columna])){
    		 vacia=true;
    	 }
+     else{
+         i=i+1;
+
+     }
     }
     fila=i;
     return fila;
