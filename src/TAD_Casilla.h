@@ -3,11 +3,11 @@
  * FUNDAMENTOS DE PROGRAMACIÓN
  *  Curso 2024/2025
 
-    Nombre: TAD_Casilla.h
-    Descripción: Especificación del TAD Casilla para el proyecto Number Tiles
-    encargado de gestionar la información de una casilla del tablero.
+	Nombre: TAD_Casilla.h
+	Descripción: Especificación del TAD Casilla para el proyecto Number Tiles
+	encargado de gestionar la información de una casilla del tablero.
 
-    Autor: Alejandro Bravo González y Alejandro Pulido Rodríguez
+	Autor: Alejandro Bravo González y Alejandro Pulido Rodríguez
 
  *
  */
@@ -15,11 +15,14 @@
 #ifndef NUMBERTILES_H_
 #define NUMBERTILES_H_
 
+#include <iostream>
+using namespace std;
+
 const int MAX=1;
 typedef int tVector[MAX];
 struct Casilla{
-    tVector vector;
-    int ocupadas;
+	tVector vector;
+	int ocupadas;
 };
 
 //PRE:{}
@@ -36,12 +39,13 @@ void vaciarCasilla(Casilla &c);
 
 //PRE:{}
 //POST:{inserta el valor n en la casilla}
-void insertarValor(Casilla &c, int n);
+void insertarValorCasilla(Casilla &c, int n);
 
 //PRE:{}
 //POST:{devuelve el valor almacenado en la casilla}
-int devolverValor(Casilla c);
+int devolverValorCasilla(Casilla c);
 
-#endif 
+#endif
+
 
 
