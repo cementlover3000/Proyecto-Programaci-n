@@ -66,8 +66,15 @@ int filaPrimeraCasillaVacia(Tablero t,int columna);
 
 //PRE:{}
 //POST:{devuelve el número de filas que hay en el tablero}
-////Complejidad O(1)
+//Complejidad O(1)
 int numeroFilas(Tablero t);
 
+//PRE:{}
+//POST:{devuelve el número de columnas que hay en el tablero}
+//Complejidad O(1)
+int numeroColumnas(Tablero t);
 
-
+//PRE:{}
+//POST:{rastrea todas las casillas del tablero en busca del valor más grande, y lo devuelve}
+//Complejidad O(n^2)
+int maximoValorTablero(Tablero t);
