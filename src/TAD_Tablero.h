@@ -43,4 +43,22 @@ bool tableroEstaLleno(Tablero t);
 //POST:{elimina las casillas vacías intermedias y desplaza los elementos de una determinada casilla}
 void eliminarCasillasVaciasIntermedias(Tablero &t, int columna);
 
+//PRE:{0<=fila<7, 0<=columna<7}
+//POST:{devuelve true si la casilla está vacía y false en caso contrario}
+bool casillaEstaVacia(Tablero t, int fila, int columna);
+
+//PRE:{0<=fila<7, 0<=columna<7}
+//POST:{elimina el valor que se encuentra en la casilla determinada por fila y columna y deplaza los 
+//elementos de la columna que se encuentran encima de ella hacia abajo}
+void vaciarCasillaTablero(Tablero &t, int fila, int columna);
+
+//PRE:{0<=columna<7, para que el módulo funcione, la columna no puede estar llena}
+//POST:{devuelve la fila de la primera casilla vacía de la columna dada}
+int filaPrimeraCasillaVacia(Tablero t,int columna);
+
+//PRE:{}
+//POST:{devuelve el número de filas que hay en el tablero}
+int numeroFilas(Tablero t);
+
+
 
