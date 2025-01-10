@@ -105,6 +105,15 @@ int filaPrimeraCasillaVacia(Tablero t,int columna){
     return fila;
 }
 
+int numeroFilas(Tablero t){
+    return FILAS;
+}
+
+int numeroColumnas(Tablero t){
+    return COLUMNAS;
+}
+
+
 
 
 
