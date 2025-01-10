@@ -27,22 +27,27 @@ struct Casilla{
 
 //PRE:{}
 //POST:{inicia la casilla vacia}
+//Complejidad O(1)
 void iniciar(Casilla &c);
 
 //PRE:{}
 //POST:{devuelve true si la casilla está vacía y false si está llena}
+//Complejidad O(1)
 bool estaVacia(Casilla c);
 
 //PRE:{}
 //POST:{borra la información almacenada en una casilla}
+//Complejidad O(1)
 void vaciarCasilla(Casilla &c);
 
 //PRE:{}
 //POST:{inserta el valor n en la casilla}
+//Complejidad O(1)
 void insertarValorCasilla(Casilla &c, int n);
 
 //PRE:{}
 //POST:{devuelve el valor almacenado en la casilla}
+//Complejidad O(1)
 int devolverValorCasilla(Casilla c);
 
 #endif
