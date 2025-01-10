@@ -90,6 +90,22 @@ void vaciarCasillaTablero(Tablero &t, int fila, int columna){
     t.ocupadas=t.ocupadas-1;
 }
 
+int filaPrimeraCasillaVacia(Tablero t,int columna){
+    int fila;
+    int i;
+    i=0;
+    bool vacia;
+    vacia=false;
+    while(i<FILAS && !vacia){
+   	 if(estaVacia(t.tablero[i][columna])){
+   		 vacia=true;
+   	 }
+    }
+    fila=i;
+    return fila;
+}
+
+
 
 
 
