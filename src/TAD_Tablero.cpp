@@ -113,6 +113,23 @@ int numeroColumnas(Tablero t){
     return COLUMNAS;
 }
 
+int maximoValorTablero(Tablero t){
+    int i;
+    int j;
+    int max;
+    max=0;
+    for(i=0;i<COLUMNAS;i++){
+   	 for(j=0;j<FILAS;j++){
+   		 if(devolverValorCasilla(t.tablero[i][j])>max){
+   			 max=devolverValorCasilla(t.tablero[i][j]);
+   		 }
+   	 }
+    }
+    return max;
+}
+
+
+
 
 
 
