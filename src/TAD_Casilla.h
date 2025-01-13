@@ -46,7 +46,3 @@ void insertarValorCasilla(Casilla &c, int n);
 int devolverValorCasilla(Casilla c);
 
 #endif
-
-
-
-
