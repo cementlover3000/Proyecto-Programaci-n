@@ -8,6 +8,7 @@
 #include "TAD_Casilla.cpp"
 #include "TAD_Tablero.h"
 #include "TAD_Tablero.cpp"
+#include "PruebasMódulos.h"
 
 using namespace std;
 
@@ -32,7 +33,7 @@ void testEstaVacia() {
 	        cout << "testEstaVacia (casilla vacia): Fallido.\n";
 	    }
 
-	    insertarValor(c, 5);
+	    insertarValorCasilla(c, 5);
 	    if (!estaVacia(c)) {
 	        cout << "testEstaVacia (casilla no vacia): Bien.\n";
 	    } else {
@@ -43,7 +44,7 @@ void testEstaVacia() {
 void testVaciarCasilla() {
 	    Casilla c;
 	    iniciar(c);
-	    insertarValor(c, 10);
+	    insertarValorCasilla(c, 10);
 	    vaciarCasilla(c);
 	    if (c.ocupadas == 0 && estaVacia(c)) {
 	        cout << "testVaciarCasilla: Bien.\n";
@@ -55,7 +56,7 @@ void testVaciarCasilla() {
 void testInsertarValor() {
 	    Casilla c;
 	    iniciar(c);
-	    insertarValor(c, 7);
+	    insertarValorCasilla(c, 7);
 	    if (c.ocupadas == 1 && c.vector[0] == 7) {
 	        cout << "testInsertarValor: Bien.\n";
 	    } else {
@@ -66,8 +67,8 @@ void testInsertarValor() {
 void testDevolverValor() {
 	    Casilla c;
 	    iniciar(c);
-	    insertarValor(c, 42);
-	    int valor = devolverValor(c);
+	    insertarValorCasilla(c, 42);
+	    int valor = devolverValorCasilla(c);
 	    if (valor == 42) {
 	        cout << "testDevolverValor: Bien.\n";
 	    } else {
