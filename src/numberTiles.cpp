@@ -11,12 +11,12 @@
 #include "TAD_Casilla.h"
 #include "TAD_Tablero.cpp"
 #include "TAD_Tablero.h"
-#include "PruebasMódulos.cpp"
-#include "PruebasMódulos.h"
-
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+
+#include "PruebasTADCasilla.cpp"
+#include "PruebasTADCasilla.h"
 
 using namespace std;
 
