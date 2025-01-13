@@ -5,8 +5,8 @@
  *      Author: Abraham
  */
 
-#ifndef PRUEBASMÓDULOS_H_
-#define PRUEBASMÓDULOS_H_
+#ifndef PRUEBASTADCASILLA_H_
+#define PRUEBASTADCASILLA_H_
 
 #include <iostream>
 
@@ -33,4 +33,4 @@ void testDevolverValor();
 void pruebasTADCasilla();
 
 
-#endif /* PRUEBASMÓDULOS_H_ */
+#endif /* PRUEBASTADCASILLA_H_ */
