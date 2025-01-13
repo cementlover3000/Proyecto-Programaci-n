@@ -46,4 +46,3 @@ int devolverValorCasilla(Casilla c){
     valor=c.vector[0];
     return valor;
 }
-
