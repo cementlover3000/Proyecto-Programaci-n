@@ -7,15 +7,13 @@
 
 
 #include "entorno.h"
-#include "TAD_Casilla.cpp"
 #include "TAD_Casilla.h"
-#include "TAD_Tablero.cpp"
 #include "TAD_Tablero.h"
 #include <iostream>
 #include <cmath>
+#include <ctime>
 #include <cstdlib>
 
-#include "PruebasTADCasilla.cpp"
 #include "PruebasTADCasilla.h"
 
 using namespace std;
