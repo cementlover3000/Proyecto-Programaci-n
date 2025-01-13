@@ -7,6 +7,12 @@
 
 
 #include "entorno.h"
+#include "TAD_Casilla.cpp"
+#include "TAD_Casilla.h"
+#include "TAD_Tablero.cpp"
+#include "TAD_Tablero.h"
+#include "PruebasMódulos.cpp"
+#include "PruebasMódulos.h"
 
 #include <iostream>
 #include <cmath>
@@ -32,7 +38,7 @@ void ejemplo() {
 	TipoTecla tecla;
 
 
-	srand (time(NULL));
+	srand(time(NULL));
 
 	int numFilas, numColumnas, comoIniciar, filasIniciales;
 
@@ -122,7 +128,7 @@ void ejemplo() {
 
 int main(){
 
-	ejemplo();
-
+	// ejemplo();
+	pruebasTADCasilla();
 	return 0;
 }
