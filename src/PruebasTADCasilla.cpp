@@ -4,11 +4,12 @@
 
 
 #include <iostream>
+
+#include "PruebasTADCasilla.h"
 #include "TAD_Casilla.h"
 #include "TAD_Casilla.cpp"
 #include "TAD_Tablero.h"
 #include "TAD_Tablero.cpp"
-#include "PruebasMódulos.h"
 
 using namespace std;
 
