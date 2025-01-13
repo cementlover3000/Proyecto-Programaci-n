@@ -7,9 +7,7 @@
 
 #include "PruebasTADCasilla.h"
 #include "TAD_Casilla.h"
-#include "TAD_Casilla.cpp"
 #include "TAD_Tablero.h"
-#include "TAD_Tablero.cpp"
 
 using namespace std;
 
