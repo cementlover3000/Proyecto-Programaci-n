@@ -112,6 +112,8 @@ void ejemplo() {
 				break;
 
 			case TF1:
+				// TODO ampliación
+				// entornoPonerNumeroLanzador(pow(2, rand() % 8 + 1), columna);
 				break;
 			case TF2:
 				break;
