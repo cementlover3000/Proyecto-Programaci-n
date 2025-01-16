@@ -2,7 +2,7 @@
  * PruebasMódulos.h
  *
  *  Created on: 13 ene 2025
- *      Author: Abraham
+ *  	Author: Abraham
  */
 
 #ifndef PRUEBASTADCASILLA_H_
