@@ -44,4 +44,19 @@ bool tableroEstaLleno(Tablero t);
 //POST:{elimina las casillas vacías intermedias y desplaza los elementos de una determinada casilla}
 void eliminarCasillasVaciasIntermedias(Tablero &t, int columna);
 
+bool casillaEstaVacia(Tablero t, int fila, int columna);
+
+void vaciarCasillaTablero(Tablero &t, int fila, int columna);
+
+int filaPrimeraCasillaVacia(Tablero t,int columna);
+
+int numeroFilas(Tablero t);
+
+int numeroColumnas(Tablero t);
+
+int maximoValorTablero(Tablero t);
+
+
+
+
 #endif
