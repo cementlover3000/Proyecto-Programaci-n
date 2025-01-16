@@ -17,9 +17,9 @@ void testIniciar() {
 	    Casilla c;
 	    iniciar(c);
 	    if (c.ocupadas == 0) {
-	        cout << "testIniciar: Bien.\n";
+	        cout << "testIniciar: Bien." << endl;
 	    } else {
-	        cout << "testIniciar: Fallido.\n";
+	        cout << "testIniciar: Fallido." << endl;
 	    }
 	}
 
@@ -27,16 +27,16 @@ void testEstaVacia() {
 	    Casilla c;
 	    iniciar(c);
 	    if (estaVacia(c)) {
-	        cout << "testEstaVacia (casilla vacia): Bien.\n";
+	        cout << "testEstaVacia (casilla vacia): Bien." << endl;
 	    } else {
-	        cout << "testEstaVacia (casilla vacia): Fallido.\n";
+	        cout << "testEstaVacia (casilla vacia): Fallido." << endl;
 	    }
 
 	    insertarValorCasilla(c, 5);
 	    if (!estaVacia(c)) {
-	        cout << "testEstaVacia (casilla no vacia): Bien.\n";
+	        cout << "testEstaVacia (casilla no vacia): Bien." << endl;
 	    } else {
-	        cout << "testEstaVacia (casilla no vacia): Fallido.\n";
+	        cout << "testEstaVacia (casilla no vacia): Fallido." << endl;
 	    }
 	}
 
@@ -46,9 +46,9 @@ void testVaciarCasilla() {
 	    insertarValorCasilla(c, 10);
 	    vaciarCasilla(c);
 	    if (c.ocupadas == 0 && estaVacia(c)) {
-	        cout << "testVaciarCasilla: Bien.\n";
+	        cout << "testVaciarCasilla: Bien." << endl;
 	    } else {
-	        cout << "testVaciarCasilla: Fallido.\n";
+	        cout << "testVaciarCasilla: Fallido." << endl;
 	    }
 	}
 
@@ -57,9 +57,9 @@ void testInsertarValor() {
 	    iniciar(c);
 	    insertarValorCasilla(c, 7);
 	    if (c.ocupadas == 1 && c.vector[0] == 7) {
-	        cout << "testInsertarValor: Bien.\n";
+	        cout << "testInsertarValor: Bien." << endl;
 	    } else {
-	        cout << "testInsertarValor: Fallido.\n";
+	        cout << "testInsertarValor: Fallido. Debería haber valor 7 en la casilla. Valor obtenido:" << devolverValorCasilla(c) << endl;
 	    }
 	}
 
@@ -69,9 +69,9 @@ void testDevolverValor() {
 	    insertarValorCasilla(c, 42);
 	    int valor = devolverValorCasilla(c);
 	    if (valor == 42) {
-	        cout << "testDevolverValor: Bien.\n";
+	        cout << "testDevolverValor: Bien." << endl;
 	    } else {
-	        cout << "testDevolverValor: Fallido.\n";
+	        cout << "testDevolverValor: Fallido. Debería devolver 42. En vez de eso, devuelve:" << devolverValorCasilla(c) << endl;
 	    }
 	}
 
