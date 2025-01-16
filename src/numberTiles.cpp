@@ -15,6 +15,7 @@
 #include <cstdlib>
 
 #include "PruebasTADCasilla.h"
+#include "PruebasTADTablero.h"
 
 using namespace std;
 
@@ -100,7 +101,14 @@ void ejemplo() {
 
 				break;
 			case TIzquierda:
-				// TODO Por hacer
+				entornoQuitarNumeroLanzador(columna);
+
+				if (columna > 0)
+					columna--;
+				else
+					columna = numColumnas - 1;
+
+				entornoPonerNumeroLanzador(valor, columna);
 				break;
 
 			case TF1:
@@ -126,7 +134,8 @@ void ejemplo() {
 
 int main(){
 
-	// ejemplo();
+	ejemplo();
 	pruebasTADCasilla();
+	pruebasTADTablero();
 	return 0;
 }
