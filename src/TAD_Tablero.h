@@ -3,11 +3,11 @@
  * FUNDAMENTOS DE PROGRAMACIÓN
  *  Curso 2024/2025
 
-    Nombre: TAD_Tablero.h
-    Descripción: Especificación del TAD Tablero para el proyecto Number Tiles
-    		       encargado de gestionar la información del tablero.
+	Nombre: TAD_Tablero.h
+	Descripción: Especificación del TAD Tablero para el proyecto Number Tiles
+   		    	encargado de gestionar la información del tablero.
 
-    Autor: Alejandro Bravo González y Alejandro Pulido Rodríguez
+	Autor: Alejandro Bravo González y Alejandro Pulido Rodríguez
 
  *
  */
@@ -20,9 +20,11 @@ const int FILAS=7;
 const int COLUMNAS=7;
 typedef Casilla tMatriz[FILAS][COLUMNAS];
 struct Tablero{
-    tMatriz tablero;
-    int ocupadas;
+	tMatriz tablero;
+	int ocupadas;
 };
+
+void iniciarTablero(Tablero &t);
 
 //PRE:{n tiene que ser múltiplo de 2, 0<=fila<FILAS, 0<=columna<COLUMNAS}
 //POST:{inserta el valor n en la casilla del tablero indicada por fila y columna}
@@ -62,7 +64,11 @@ int numeroColumnas(Tablero t);
 
 int maximoValorTablero(Tablero t);
 
+void fusionarCasillasAdyacentes(Tablero &t, int fila,int columna);
+
 
 
 
 #endif
+
+
