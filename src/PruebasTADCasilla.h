@@ -1,36 +1,21 @@
-/*
- * PruebasMódulos.h
- *
- *  Created on: 13 ene 2025
- *  	Author: Abraham
- */
-
-#ifndef PRUEBASTADCASILLA_H_
-#define PRUEBASTADCASILLA_H_
-
+#ifndef TAD_CASILLA_H_
+#define TAD_CASILLA_H_
 #include <iostream>
-
-
+#include "TAD_Casilla.h"
 using namespace std;
 
 
+void ejecutarPruebas();
 
-void testIniciar();
+void pruebaIniciar();
 
+void pruebaInsertarValorCasilla();
 
-void testEstaVacia();
+void pruebaEstaVacia();
 
+void pruebaObtenerValorCasilla();
 
-void testVaciarCasilla();
+void pruebaVaciarCasilla();
 
+#endif
 
-void testInsertarValor();
-
-
-void testDevolverValor();
-
-
-void pruebasTADCasilla();
-
-
-#endif /* PRUEBASTADCASILLA_H_ */
