@@ -5,7 +5,7 @@
 using namespace std;
 
 
-void ejecutarPruebas();
+void ejecutarPruebasTAD_Casilla();
 
 void pruebaIniciar();
 
