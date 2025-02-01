@@ -1,94 +1,127 @@
 #include <iostream>
-#include "PruebasTADCasilla.h"
 #include "TAD_Casilla.h"
-
+#include "PruebasTAD_Casilla.h"
 using namespace std;
 
-void testIniciar() {
+
+void pruebaIniciar() {
 	Casilla c;
 	iniciar(c);
 	if (c.ocupadas == 0) {
-    	cout << "testIniciar: Bien." << endl;
-	} else {
-    	cout << "testIniciar: Fallido." << endl;
+    	cout << "Prueba Iniciar: OK" << endl;
+	}
+	else {
+    	cout << "Prueba Iniciar: ERROR" << endl;
 	}
 }
 
-void testEstaVacia() {
+void pruebaInsertarValorCasilla() {
 	Casilla c;
 	iniciar(c);
-	if (estaVacia(c)) {
-    	cout << "testEstaVacia (casilla vacia): Bien." << endl;
-	} else {
-    	cout << "testEstaVacia (casilla vacia): Fallido." << endl;
-	}
 
+	// Prueba 1
 	insertarValorCasilla(c, 5);
-	if (!estaVacia(c)) {
-    	cout << "testEstaVacia (casilla no vacia): Bien." << endl;
-	} else {
-    	cout << "testEstaVacia (casilla no vacia): Fallido." << endl;
+	if (c.vector[0] == 5 && c.ocupadas == 1) {
+    	cout << "Prueba 1 Insertar Valor Casilla: OK" << endl;
 	}
-}
+	else {
+    	cout << "Prueba 1 Insertar Valor Casilla: ERROR" << endl;
+	}
 
-void testVaciarCasilla() {
-	Casilla c;
-	iniciar(c);
+	// Prueba 2
 	insertarValorCasilla(c, 10);
+	if (c.ocupadas == 1 && c.vector[0] == 5) {
+    	cout << "Prueba 2 Insertar Valor Casilla: OK" << endl;
+	}
+	else {
+    	cout << "Prueba 2 Insertar Valor Casilla: ERROR" << endl;
+	}
+
+	// Prueba 3
 	vaciarCasilla(c);
-	if (c.ocupadas == 0 && estaVacia(c)) {
-    	cout << "testVaciarCasilla: Bien." << endl;
-	} else {
-    	cout << "testVaciarCasilla: Fallido." << endl;
+	insertarValorCasilla(c, 15);
+	if (c.vector[0] == 15 && c.ocupadas == 1) {
+    	cout << "Prueba 3 Insertar Valor Casilla: OK" << endl;
+	}
+	else {
+    	cout << "Prueba 3 Insertar Valor Casilla: ERROR" << endl;
 	}
 }
 
-void testInsertarValor() {
+void pruebaEstaVacia() {
 	Casilla c;
 	iniciar(c);
-	insertarValorCasilla(c, 7);
-	if (c.ocupadas == 1 && c.vector[0] == 7) {
-   	cout << "testInsertarValor: Bien." << endl;
-	} else {
-    	cout << "testInsertarValor: Fallido. Debería haber valor 7 en la casilla. Valor obtenido: " << devolverValorCasilla(c) << endl;
+
+	// Prueba 1
+	if (estaVacia(c)) {
+    	cout << "Prueba 1 Esta Vacia: OK" << endl;
+	}
+	else {
+    	cout << "Prueba 1 Esta Vacia: ERROR" << endl;
 	}
 
-	// Prueba de inserción en casilla llena
-	insertarValorCasilla(c, 8); // Intentar insertar un segundo valor
-	if (c.ocupadas == 1) {
-    	cout << "testInsertarValor (inserción en casilla llena): Bien." << endl;
-	} else {
-    	cout << "testInsertarValor (inserción en casilla llena): Fallido. Se insertó un segundo valor." << endl;
+	// Prueba 2
+	insertarValorCasilla(c, 10);
+	if (!estaVacia(c)) {
+    	cout << "Prueba 2 Esta Vacia: OK" << endl;
+	}
+	else {
+    	cout << "Prueba 2 Esta Vacia: ERROR" << endl;
 	}
 }
 
-void testDevolverValor() {
+void pruebaObtenerValorCasilla() {
+	Casilla c;
+	iniciar(c);
+	int valor;
+
+	// Prueba 1
+	insertarValorCasilla(c, 10);
+	valor = obtenerValorCasilla(c);
+	if (valor == 10) {
+    	cout << "Prueba 1 Obtener Valor Casilla: OK" << endl;
+	} else {
+    	cout << "Prueba 1 Obtener Valor Casilla: ERROR" << endl;
+	}
+
+	// Prueba 2
+	vaciarCasilla(c);
+	insertarValorCasilla(c, 20);
+	valor = obtenerValorCasilla(c);
+	if (valor == 20) {
+    	cout << "Prueba 2 Obtener Valor Casilla: OK" << endl;
+	} else {
+    	cout << "Prueba 2 Obtener Valor Casilla: ERROR" << endl;
+	}
+
+	// Prueba 3
+	vaciarCasilla(c);
+	insertarValorCasilla(c, 30);
+	valor = obtenerValorCasilla(c);
+	if (valor == 30) {
+    	cout << "Prueba 3 Obtener Valor Casilla: OK" << endl;
+	} else {
+    	cout << "Prueba 3 Obtener Valor Casilla: ERROR" << endl;
+	}
+}
+
+void pruebaVaciarCasilla() {
 	Casilla c;
 	iniciar(c);
 	insertarValorCasilla(c, 42);
-	int valor = devolverValorCasilla(c);
-	if (valor == 42) {
-    	cout << "testDevolverValor: Bien." << endl;
-	} else {
-    	cout << "testDevolverValor: Fallido. Debería devolver 42. En vez de eso, devuelve: " << valor << endl;
-	}
-
-	// Prueba de devolver valor de casilla vacía
 	vaciarCasilla(c);
-	valor = devolverValorCasilla(c);
-	if (valor == -1) { // Asumiendo que -1 indica un error
-    	cout << "testDevolverValor (casilla vacía): Bien." << endl;
+	if (c.ocupadas == 0) {
+    	cout << "Prueba Vaciar Casilla: OK" << endl;
 	} else {
-    	cout << "testDevolverValor (casilla vacía): Faillido" << endl;
+    	cout << "Prueba Vaciar Casilla: ERROR" << endl;
 	}
 }
 
-void pruebasTADCasilla(){
-    cout << "Iniciando pruebas del TAD_Casilla." << endl;
-    testIniciar();
-    testEstaVacia();
-    testVaciarCasilla();
-    testInsertarValor();
-    testDevolverValor();
-    cout << "Fin de las pruebas del TAD_Casilla." << endl;
+void ejecutarPruebasTAD_Casilla() {
+	pruebaIniciar();
+	pruebaInsertarValorCasilla();
+	pruebaEstaVacia();
+	pruebaObtenerValorCasilla();
+	pruebaVaciarCasilla();
 }
+
