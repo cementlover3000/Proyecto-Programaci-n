@@ -1,21 +1,8 @@
-//============================================================================
-// Name        : numberTiles.cpp
-// Author      : 
-// Version     :
-// Description : Programa principal del proyecto Number Tiles
-//============================================================================
-
-
 #include "entorno.h"
-#include "TAD_Casilla.h"
-#include "TAD_Tablero.h"
+#include "PruebasTAD_Casilla.h"
 #include <iostream>
 #include <cmath>
-#include <ctime>
 #include <cstdlib>
-
-#include "PruebasTADCasilla.h"
-#include "PruebasTADTablero.h"
 
 using namespace std;
 
@@ -24,120 +11,111 @@ using namespace std;
 // Se inicia un tablero con la información de la configuración
 // Se genera un número aleatorio en el lanzador, la parte inferior del tablero
 // Se inicia elbucle de procesamiento de las teclas:
-//       TDerecha: Se mueve el número del lanzador hacia la derecha
-//       TSalir: Termina el programa con el mensaje de abandono
+//   	TDerecha: Se mueve el número del lanzador hacia la derecha
+//   	TSalir: Termina el programa con el mensaje de abandono
 // Se aconseja modificar los valores del fichero de configuración para ver
 // cómo cambia este ejemplo.
 //
 void ejemplo() {
-	string msg;
-	msg = " ";
-	bool salir = false;
+    string msg;
+    msg = " ";
+    bool salir = false;
 
-	TipoTecla tecla;
-
-
-	srand(time(NULL));
-
-	int numFilas, numColumnas, comoIniciar, filasIniciales;
-
-	int columna, fila;
-	columna = 0;
-	fila = 0;
-	int m[MAX_FILAS][MAX_COL];
-	int valor;
-
-	// numFilas: número de filas del tablero
-	// numColumnas: número de columnas del tablero
-	// comoIniciar: si es 0, el tablero se inicia con los valores del fichero de configuracion guardados en m
-	//          si es mayor que 0, el tablero se inicia con valores aleatorios potencias de 2 entre
-	//          2 y (2 elevado a comoIniciar)
-	// filasIniciales: número de filas iniciales con valores en el tablero
-	// m: matriz de enteros con los valores iniciales para el tablero si comoIniciar es igual a 0
-
-	if (entornoCargarConfiguracion(numFilas, numColumnas, comoIniciar, filasIniciales, m)){
-
-		entornoIniciar(numFilas, numColumnas);
+    TipoTecla tecla;
 
 
-		// Pinta la pantalla completa
-		for (fila = 0; fila < numFilas; fila++){
-				for (columna = 0; columna < numColumnas; columna++){
-					if (fila < filasIniciales){
-						if (comoIniciar==0)
-							entornoPonerNumero(fila,columna, m[fila][columna]);
-						else
-							entornoPonerNumero(fila, columna, pow(2, rand()%comoIniciar+1));
-					}
-					else{
-						entornoEliminarNumero(fila, columna);
-					}
-				}
-		}
+    srand (time(NULL));
 
-		fila = 0;
-		columna = 0; // columna de comienzo del valor en el lanzador
+    int numFilas, numColumnas, comoIniciar, filasIniciales;
 
-		valor = pow (2,(1 + rand() % 8 ) );
-		entornoPonerNumeroLanzador(valor, columna);
+    int columna, fila;
+    columna = 0;
+    fila = 0;
+    int m[MAX_FILAS][MAX_COL];
+    int valor;
 
-		while (!salir) {
-			tecla = entornoLeerTecla();
+    // numFilas: número de filas del tablero
+    // numColumnas: número de columnas del tablero
+    // comoIniciar: si es 0, el tablero se inicia con los valores del fichero de configuracion guardados en m
+    //      	si es mayor que 0, el tablero se inicia con valores aleatorios potencias de 2 entre
+    //      	2 y (2 elevado a comoIniciar)
+    // filasIniciales: número de filas iniciales con valores en el tablero
+    // m: matriz de enteros con los valores iniciales para el tablero si comoIniciar es igual a 0
 
-			switch (tecla) {
-			case TEnter:
+    if (entornoCargarConfiguracion(numFilas, numColumnas, comoIniciar, filasIniciales, m)){
+
+   	 entornoIniciar(numFilas, numColumnas);
 
 
-				break;
-			case TDerecha:
-				entornoQuitarNumeroLanzador(columna);
+   	 // Pinta la pantalla completa
+   	 for (fila = 0; fila < numFilas; fila++){
+   			 for (columna = 0; columna < numColumnas; columna++){
+   				 if (fila < filasIniciales){
+   					 if (comoIniciar==0)
+   						 entornoPonerNumero(fila,columna, m[fila][columna]);
+   					 else
+   						 entornoPonerNumero(fila, columna, pow(2, rand()%comoIniciar+1));
+   				 }
+   				 else{
+   					 entornoEliminarNumero(fila, columna);
+   				 }
+   			 }
+   	 }
 
-				if (columna < numColumnas - 1)
-					columna++;
-				else
-					columna = 0;
+   	 fila = 0;
+   	 columna = 0; // columna de comienzo del valor en el lanzador
 
-				entornoPonerNumeroLanzador(valor, columna);
+   	 valor = pow (2,(1 + rand() % 8 ) );
+   	 entornoPonerNumeroLanzador(valor, columna);
 
-				break;
-			case TIzquierda:
-				entornoQuitarNumeroLanzador(columna);
+   	 while (!salir) {
+   		 tecla = entornoLeerTecla();
 
-				if (columna > 0)
-					columna--;
-				else
-					columna = numColumnas - 1;
+   		 switch (tecla) {
+   		 case TEnter:
 
-				entornoPonerNumeroLanzador(valor, columna);
-				break;
 
-			case TF1:
-				// TODO ampliación
-				// entornoPonerNumeroLanzador(pow(2, rand() % 8 + 1), columna);
-				break;
-			case TF2:
-				break;
+   			 break;
+   		 case TDerecha:
+   			 entornoQuitarNumeroLanzador(columna);
 
-			case TSalir:
-				msg = "Has abandonado";
-				salir = true;
-				break;
-			case TNada:
-				break;
-			}
-		}
+   			 if (columna < numColumnas - 1)
+   				 columna++;
+   			 else
+   				 columna = 0;
 
-		entornoMostrarMensajeFin(msg);
-		entornoPausa(1.5);
-	}
+   			 entornoPonerNumeroLanzador(valor, columna);
 
-	entornoTerminar();
+   			 break;
+   		 case TIzquierda:
+   			 // TODO Por hacer
+   			 break;
+
+   		 case TF1:
+   			 break;
+   		 case TF2:
+   			 break;
+
+   		 case TSalir:
+   			 msg = "Has abandonado";
+   			 salir = true;
+   			 break;
+   		 case TNada:
+   			 break;
+   		 }
+   	 }
+
+   	 entornoMostrarMensajeFin(msg);
+   	 entornoPausa(1.5);
+    }
+
+    entornoTerminar();
 }
 
 int main(){
+    ejecutarPruebas();
+    //ejemplo();
 
-	ejemplo();
-	pruebasTADCasilla();
-	pruebasTADTablero();
-	return 0;
+    return 0;
 }
+
