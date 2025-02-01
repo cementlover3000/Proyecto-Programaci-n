@@ -113,7 +113,7 @@ void ejemplo() {
 }
 
 int main(){
-    ejecutarPruebas();
+    ejecutarPruebasTAD_Casilla();
     //ejemplo();
 
     return 0;
