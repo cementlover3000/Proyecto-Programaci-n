@@ -1,74 +1,45 @@
-/*
- *
- * FUNDAMENTOS DE PROGRAMACIÓN
- *  Curso 2024/2025
-
-	Nombre: TAD_Tablero.h
-	Descripción: Especificación del TAD Tablero para el proyecto Number Tiles
-   		    	encargado de gestionar la información del tablero.
-
-	Autor: Alejandro Bravo González y Alejandro Pulido Rodríguez
-
- *
- */
-
 #ifndef TAD_TABLERO_H_
 #define TAD_TABLERO_H_
+#include <iostream>
 #include "TAD_Casilla.h"
+using namespace std;
 
-const int FILAS=7;
-const int COLUMNAS=7;
+const int FILAS=6;
+const int COLUMNAS=5;
 typedef Casilla tMatriz[FILAS][COLUMNAS];
 struct Tablero{
-	tMatriz tablero;
-	int ocupadas;
+    tMatriz tablero;
+    int ocupadas;
 };
 
 void iniciarTablero(Tablero &t);
 
-//PRE:{n tiene que ser múltiplo de 2, 0<=fila<FILAS, 0<=columna<COLUMNAS}
-//POST:{inserta el valor n en la casilla del tablero indicada por fila y columna}
-//Complejidad: O(1)
-void insertarValorTablero(Tablero &t,int n, int fila,int columna);
+void insertarValorTablero(Tablero &t,int flia,int columna);
 
-//PRE:{0<=fila<FILAS, 0<=columna<COLUMNAS, la casilla debe de estar llena}
-//POST:{devuelve el valor de la casilla del tablero indicada por fila y columna}
-//Complejidad: O(1)
-int obtenerValorTablero(Tablero t,int fila,int columna);
+bool casillaEstaVacia(Tablero t,int fila,int columna);
 
-//PRE:{ 0<=columna<COLUMNAS}
-//POST:{devuelve true si la columna está llena y false en caso contrario}
-//Complejidad: O(n)
+int obtenerValorCasilla(Tablero t,int fila,int columna);
+
+void vaciarCasillaTablero(Tablero &t,int fila,int columna);
+
 bool columnaEstaLlena(Tablero t,int columna);
-
-//PRE:{}
-//POST:{devuelve true si el tablero está lleno y false en caso contrario}
-//Complejidad: O(n²)
-bool tableroEstaLleno(Tablero t);
-
-//PRE:{0<=columna<COLUMNAS}
-//POST:{elimina las casillas vacías intermedias y desplaza los elementos de una determinada casilla}
-//Complejidad: O(n)
-void eliminarCasillasVaciasIntermedias(Tablero &t, int columna);
-
-
-bool casillaEstaVacia(Tablero t, int fila, int columna);
-
-void vaciarCasillaTablero(Tablero &t, int fila, int columna);
 
 int filaPrimeraCasillaVacia(Tablero t,int columna);
 
-int numeroFilas(Tablero t);
+bool tableroEstaLleno(Tablero t);
 
-int numeroColumnas(Tablero t);
+void numeroFilas(Tablero t);
 
-int maximoValorTablero(Tablero t);
+void numeroColumnas(Tablero t);
 
-void fusionarCasillasAdyacentes(Tablero &t, int fila,int columna);
+void fusionarCasillasAdyacentes(Tablero &t,int fila,int columna);
 
+void eliminarCasillasVaciasIntermedias(Tablero &t,int columna);
 
+int obtenerValorMaximo(Tablero t);
 
 
 #endif
+
 
 
