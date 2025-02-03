@@ -14,11 +14,11 @@ struct Tablero{
 
 void iniciarTablero(Tablero &t);
 
-void insertarValorTablero(Tablero &t,int flia,int columna);
+void insertarValorTablero(Tablero &t,int flia,int columna,int valor);
 
 bool casillaEstaVacia(Tablero t,int fila,int columna);
 
-int obtenerValorCasilla(Tablero t,int fila,int columna);
+int obtenerValorTablero(Tablero t,int fila,int columna);
 
 void vaciarCasillaTablero(Tablero &t,int fila,int columna);
 
