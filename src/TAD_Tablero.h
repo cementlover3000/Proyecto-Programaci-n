@@ -28,9 +28,9 @@ int filaPrimeraCasillaVacia(Tablero t,int columna);
 
 bool tableroEstaLleno(Tablero t);
 
-void numeroFilas(Tablero t);
+int numeroFilas(Tablero t);
 
-void numeroColumnas(Tablero t);
+int numeroColumnas(Tablero t);
 
 void fusionarCasillasAdyacentes(Tablero &t,int fila,int columna);
 
