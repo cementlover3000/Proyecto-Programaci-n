@@ -14,6 +14,8 @@ struct Tablero{
 
 void iniciarTablero(Tablero &t);
 
+void iniciarTableroAleatorio (Tablero &t,int filasIniciales, int maximo)
+
 void insertarValorTablero(Tablero &t,int flia,int columna,int valor);
 
 bool casillaEstaVacia(Tablero t,int fila,int columna);
@@ -40,6 +42,3 @@ int obtenerValorMaximo(Tablero t);
 
 
 #endif
-
-
-
