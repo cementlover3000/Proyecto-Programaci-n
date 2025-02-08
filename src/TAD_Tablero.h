@@ -22,7 +22,7 @@ void iniciarTableroAleatorio(Tablero &t,int filasIniciales, int maximo);
 
 bool iniciarTablero(Tablero& t);
 
-void insertarValorTablero(Tablero &t,int flia,int columna,int valor);
+void insertarValorTablero(Tablero &t,int fila,int columna,int valor);
 
 bool casillaEstaVacia(Tablero t,int fila,int columna);
 
