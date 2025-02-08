@@ -85,19 +85,6 @@ bool iniciarTablero(Tablero& t) {
     return true;
 }
 
-void iniciarTableroAleatorio (Tablero &t,int filasIniciales, int maximo) {
-	srand(time(nullptr));
-	for (int i = 0; i < FILAS; i++) {
-		for (int j = 0; j < COLUMNAS; j++) {
-			if (i < filasIniciales) {
-				insertarValorCasilla(t.tablero[i][j], pow(2,rand()%maximo + 1));
-			}
-			else {
-				iniciar(t.tablero[i][j]);
-			}
-		}
-	}
-}
 
 void insertarValorTablero(Tablero &t, int fila, int columna, int valor) {
 	if (casillaEstaVacia(t, fila, columna)) {
