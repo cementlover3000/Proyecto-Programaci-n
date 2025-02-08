@@ -1,91 +1,53 @@
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
+#include <ctime>
 #include <cmath>
 #include "TAD_Tablero.h"
 using namespace std;
 
-void vaciarTablero(Tablero& t){
-    for (int i = 0; i < FILAS; ++i){
-        for (int j = 0; j < COLUMNAS; ++j){
-            vaciarCasillaTablero(t, i, j);
-        }
-    }
-    t.ocupadas = 0;
-}
+void iniciarTablero(Tablero &t, string nombreArchivo) {
+	ifstream archivo(nombreArchivo);
+	if (archivo.is_open()) {
+    	int numFilas, numColumnas, comoIniciar, filasIniciales;
+    	archivo >> numFilas >> numColumnas >> comoIniciar >> filasIniciales;
 
-bool esPotenciaDe2(int num){
-    return (num > 0 && num < 4096 && (num & (num - 1)) == 0);
-}
+    	int i;
+    	int j;
+    	for (i = 0; i < numFilas; i++) {
+        	for (j = 0; j < numColumnas; j++) {
+            	iniciar(t.tablero[i][j]);
+        	}
+    	}
+    	t.ocupadas = 0;
 
-int redondearPotencia2(int num){
-    if (num <= 1){
-    	return 2;
-    }
-    if (num >= 4096){
-    	return 4096;
-    }
+    	if (comoIniciar == 0) {
+        	for (i = 0; i < filasIniciales; i++) {
+            	for (j = 0; j < numColumnas; j++) {
+                	int valor;
+                	archivo >> valor;
+                	insertarValorTablero(t, i, j, valor);
+                	t.ocupadas++;
+            	}
+        	}
+    	}
+    	else {
+        	srand(time(0));
+        	for (i = 0; i < filasIniciales; i++) {
+            	for (j = 0; j < numColumnas; j++) {
+                	int valor;
+                	valor = pow(2, rand() % (comoIniciar + 1));
+                	insertarValorTablero(t, i, j, valor);
+                	t.ocupadas++;
+            	}
+        	}
+    	}
 
-    int potencia = 1;
-    while (potencia < num){
-        potencia *= 2;
-    }
-    return potencia;
-}
-
-void iniciarTableroAleatorio(Tablero &t,int filasIniciales, int maximo) {
-	srand(time(nullptr));
-	for (int i = 0; i < FILAS; i++){
-		for (int j = 0; j < COLUMNAS; j++){
-			if (i < filasIniciales){
-				insertarValorCasilla(t.tablero[i][j], pow(2,rand()%maximo + 1));
-			}
-			else {
-				iniciar(t.tablero[i][j]);
-			}
-		}
+    	archivo.close();
 	}
 }
 
 
-
-bool iniciarTablero(Tablero& t) {
-    ifstream archivo("numberTiles.cnf");
-    if (!archivo) {
-        cout << "Error al abrir el archivo." << endl;
-        return false;
-    }
-
-    int filas, columnas, aleatorio, filasIniciales;
-    archivo >> filas >> columnas >> aleatorio >> filasIniciales;
-
-    if (filas < 3 || filas > FILAS || columnas < 5 || columnas > COLUMNAS ||
-        aleatorio < 0 || aleatorio > 12 || filasIniciales < 0 || filasIniciales > filas) {
-        cout << "Error en la configuración." << endl;
-        return false;
-    }
-
-    vaciarTablero(t);
-    t.ocupadas = 0;
-
-    if (aleatorio == 0) {
-        for (int i = 0; i < filasIniciales; ++i) {
-            for (int j = 0; j < columnas; ++j) {
-                int valor;
-                archivo >> valor;
-                if (!esPotenciaDe2(valor)) {
-                    valor = redondearPotencia2(valor);
-                    cout << "Aviso: Redondeado a " << valor << "." << endl;
-                }
-                insertarValorTablero(t, i, j, valor);
-                t.ocupadas++;
-            }
-        }
-    } else {
-        iniciarTableroAleatorio(t, filasIniciales, aleatorio);
-    }
-
-    return true;
-}
 
 void insertarValorTablero(Tablero &t, int fila, int columna, int valor) {
 	if (casillaEstaVacia(t, fila, columna)) {
