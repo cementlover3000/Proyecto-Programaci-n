@@ -12,9 +12,15 @@ struct Tablero{
     int ocupadas;
 };
 
-void iniciarTablero(Tablero &t);
+void vaciarTablero(Tablero &t);
 
-void iniciarTableroAleatorio (Tablero &t,int filasIniciales, int maximo)
+bool esPotenciaDe2(int num);
+
+int redondearPotencia2(int num);
+
+void iniciarTableroAleatorio(Tablero &t,int filasIniciales, int maximo);
+
+bool iniciarTablero(Tablero& t);
 
 void insertarValorTablero(Tablero &t,int flia,int columna,int valor);
 
