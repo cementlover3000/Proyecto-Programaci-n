@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <cmath>
 #include "TAD_Tablero.h"
 using namespace std;
 
@@ -84,7 +86,6 @@ bool iniciarTablero(Tablero& t) {
 
     return true;
 }
-
 
 void insertarValorTablero(Tablero &t, int fila, int columna, int valor) {
 	if (casillaEstaVacia(t, fila, columna)) {
