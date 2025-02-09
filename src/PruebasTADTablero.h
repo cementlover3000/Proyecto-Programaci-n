@@ -1,28 +1,39 @@
-/*
- * PruebasTADTablero.h
- *
- *  Created on: 16 ene. 2025
- *      Author: alumno
- */
-
-#ifndef PRUEBASTADTABLERO_H_
-#define PRUEBASTADTABLERO_H_
+#ifndef TAD_TABLERO_H_
+#define TAD_TABLERO_H_
+#include <iostream>
 #include "TAD_Tablero.h"
+using namespace std;
 
-void inicializarTableroVacio(Tablero &t);
+void pruebaIniciarTablero;
 
-void probarInsertarValor();
+void pruebaInsertarValorTablero;
 
-void probarColumnaLlena();
+void pruebaCasillaEstaVacia;
 
-void probarTableroLleno();
+void pruebaObtenerValorTablero;
 
-void probarEliminarCasillasVaciasIntermedias();
+void pruebaVaciarCasillaTablero;
 
-void probarMaximoValor();
+void pruebaColumnaEstaLlena;
 
-void pruebasTADTablero();
+void pruebaFilaPrimeraCasillaVacia;
+
+void pruebaTableroEstaLleno;
+
+void pruebaNumeroFilas;
+
+void pruebaNumeroColumnas;
+
+void pruebaFusionarCasillasAdyacentes;
+
+void pruebaEliminarCasillasVaciasIntermedias;
+
+void pruebaObtenerValorMaximo;
+
+void ejecutarPruebasTAD_Tablero;
 
 
 
-#endif /* PRUEBASTADTABLERO_H_ */
+#endif
+
+
