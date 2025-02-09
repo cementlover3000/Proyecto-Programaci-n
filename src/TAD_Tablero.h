@@ -12,15 +12,7 @@ struct Tablero{
     int ocupadas;
 };
 
-void vaciarTablero(Tablero &t);
-
-bool esPotenciaDe2(int num);
-
-int redondearPotencia2(int num);
-
-void iniciarTableroAleatorio(Tablero &t,int filasIniciales, int maximo);
-
-bool iniciarTablero(Tablero& t);
+void iniciarTablero(Tablero &t, string nombreArchivo);
 
 void insertarValorTablero(Tablero &t,int fila,int columna,int valor);
 
@@ -43,6 +35,11 @@ int numeroColumnas(Tablero t);
 void fusionarCasillasAdyacentes(Tablero &t,int fila,int columna);
 
 void eliminarCasillasVaciasIntermedias(Tablero &t,int columna);
+
+int obtenerValorMaximo(Tablero t);
+
+
+#endif
 
 int obtenerValorMaximo(Tablero t);
 
