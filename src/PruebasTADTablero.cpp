@@ -1,117 +1,87 @@
-/*
- * PruebasTADTablero.cpp
- *
- *  Created on: 13 ene 2025
- *      Autores: Alejandro Pulido Rodríguez y Alejandro Bravo González
- */
-
-#include <iostream>
-#include "TAD_Tablero.h"
-#include "TAD_Casilla.h"
-using namespace std;
-
-// Función para inicializar un tablero vacío
-void inicializarTableroVacio(Tablero &t) {
-    t.ocupadas = 0;
-    for (int i = 0; i < FILAS; i++) {
-        for (int j = 0; j < COLUMNAS; j++) {
-            iniciar(t.tablero[i][j]);
-        }
-    }
-}
-
-// Módulo de prueba para insertarValorTablero
-void probarInsertarValor() {
-    cout << "Prueba: insertarValorTablero" << endl;
+void pruebaInsertarValorTablero() {
     Tablero t;
-    inicializarTableroVacio(t);
-    insertarValorTablero(t, 5, 1, 1);
-
-    int valor = obtenerValorTablero(t, 1, 1);
-    if (valor == 5) {
-        cout << "Bien: Se insertó el valor correctamente." << endl;
+    insertarValorTablero(t, 0, 0, 2);
+    if (obtenerValorTablero(t, 0, 0) == 2) {
+        cout << "Prueba insertarValorTablero: Correcta" << endl;
     } else {
-        cout << "Error: El valor no coincide. Valor esperado: 5, obtenido: " << valor << endl;
+        cout << "Prueba insertarValorTablero: Incorrecta" << endl;
     }
 }
 
-// Módulo de prueba para columnaEstaLlena
-void probarColumnaLlena() {
-    cout << "Prueba: columnaEstaLlena" << endl;
+void pruebaCasillaEstaVacia() {
     Tablero t;
-    inicializarTableroVacio(t);
-
-    for (int i = 0; i < FILAS; i++) {
-        insertarValorTablero(t, 1, i, 0);
+    if (casillaEstaVacia(t, 0, 0)) {
+        cout << "Prueba casilla vacía inicial: Correcta" << endl;
+    } else {
+        cout << "Prueba casilla vacía inicial: Incorrecta" << endl;
     }
+    insertarValorTablero(t, 0, 0, 4);
+    if (!casillaEstaVacia(t, 0, 0)) {
+        cout << "Prueba casilla ocupada: Correcta" << endl;
+    } else {
+        cout << "Prueba casilla ocupada: Incorrecta" << endl;
+    }
+}
 
+void pruebaObtenerValorTablero() {
+    Tablero t;
+    insertarValorTablero(t, 1, 1, 4);
+    if (obtenerValorTablero(t, 1, 1) == 4) {
+        cout << "Prueba obtenerValorTablero: Correcta" << endl;
+    } else {
+        cout << "Prueba obtenerValorTablero: Incorrecta" << endl;
+    }
+}
+
+void pruebaVaciarCasillaTablero() {
+    Tablero t;
+    insertarValorTablero(t, 0, 1, 8);
+    vaciarCasillaTablero(t, 0, 1);
+    if (casillaEstaVacia(t, 0, 1)) {
+        cout << "Prueba vaciarCasillaTablero: Correcta" << endl;
+    } else {
+        cout << "Prueba vaciarCasillaTablero: Incorrecta" << endl;
+    }
+}
+
+void pruebaColumnaEstaLlena() {
+    Tablero t;
+    for (int i = 0; i < FILAS; i++) {
+        insertarValorTablero(t, i, 0, 2);
+    }
     if (columnaEstaLlena(t, 0)) {
-        cout << "Bien: La columna está llena." << endl;
+        cout << "Prueba columna llena: Correcta" << endl;
     } else {
-        cout << "Error: La columna debería estar llena pero no lo está." << endl;
+        cout << "Prueba columna llena: Incorrecta" << endl;
+    }
+    vaciarCasillaTablero(t, 0, 0);
+    if (!columnaEstaLlena(t, 0)) {
+        cout << "Prueba columna no llena después de vaciar: Correcta" << endl;
+    } else {
+        cout << "Prueba columna no llena después de vaciar: Incorrecta" << endl;
     }
 }
 
-// Módulo de prueba para tableroEstaLleno
-void probarTableroLleno() {
-    cout << "Prueba: tableroEstaLleno" << endl;
+void pruebaTableroEstaLleno() {
     Tablero t;
-    inicializarTableroVacio(t);
-
     for (int i = 0; i < FILAS; i++) {
         for (int j = 0; j < COLUMNAS; j++) {
-            insertarValorTablero(t, 1, i, j);
+            insertarValorTablero(t, i, j, 2);
         }
     }
-
     if (tableroEstaLleno(t)) {
-        cout << "Bien: El tablero está lleno." <<endl;
+        cout << "Prueba tablero lleno: Correcta" << endl;
     } else {
-        cout << "Error: El tablero debería estar lleno pero no lo está." << endl;
+        cout << "Prueba tablero lleno: Incorrecta" << endl;
     }
 }
 
-// Módulo de prueba para eliminarCasillasVaciasIntermedias
-void probarEliminarCasillasVaciasIntermedias() {
-    cout << "Prueba: eliminarCasillasVaciasIntermedias" << endl;
-    Tablero t;
-    inicializarTableroVacio(t);
-
-    insertarValorTablero(t, 3, 0, 0);
-    insertarValorTablero(t, 5, 2, 0);
-
-    eliminarCasillasVaciasIntermedias(t, 0);
-
-    if (obtenerValorTablero(t, 0, 0) == 3 && obtenerValorTablero(t, 1, 0) == 5) {
-        cout << "Bien: Las casillas vacías intermedias fueron eliminadas correctamente." << endl;
-    } else {
-        cout << "Error: Las casillas vacías intermedias no fueron eliminadas como se esperaba." << endl;
-    }
+void ejecutarPruebasTAD_Tablero() {
+    pruebaIniciarTablero();
+    pruebaInsertarValorTablero();
+    pruebaCasillaEstaVacia();
+    pruebaObtenerValorTablero();
+    pruebaVaciarCasillaTablero();
+    pruebaColumnaEstaLlena();
+    pruebaTableroEstaLleno();
 }
-
-// Módulo de prueba para maximoValorTablero
-void probarMaximoValor() {
-    cout << "Prueba: maximoValorTablero" << endl;
-    Tablero t;
-    inicializarTableroVacio(t);
-
-    insertarValorTablero(t, 10, 0, 0);
-    insertarValorTablero(t, 20, 1, 1);
-
-    int maximo = maximoValorTablero(t);
-    if (maximo == 20) {
-        cout << "Bien: El valor máximo es correcto." << endl;
-    } else {
-        cout << "Error: El valor máximo no es correcto. Valor esperado: 20, obtenido: " << maximo << endl;
-    }
-}
-
-// Función principal para ejecutar todas las pruebas
-void pruebasTADTablero() {
-    probarInsertarValor();
-    probarColumnaLlena();
-    probarTableroLleno();
-    probarEliminarCasillasVaciasIntermedias();
-    probarMaximoValor();
-}
-
