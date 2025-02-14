@@ -3,6 +3,10 @@
 
 #include "tablero.h"
 
+struct Juego{
+    Tablero tablero;
+    int puntuacion;
+}
 
 void iniciarJuego(Juego juego);
 void jugar(Juego juego);
