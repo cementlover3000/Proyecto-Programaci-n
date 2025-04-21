@@ -21,10 +21,8 @@ bool estaVacia(Casilla c) {
 int obtenerValorCasilla(Casilla c) {
     return c.vector[0];
 }
-    
+
 
 void vaciarCasilla(Casilla &c) {
     c.ocupadas = 0;
 }
-
-
