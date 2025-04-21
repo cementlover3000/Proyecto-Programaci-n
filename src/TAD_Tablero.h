@@ -1,5 +1,5 @@
-#ifndef TAD_TABLERO_H_
-#define TAD_TABLERO_H_
+#ifndef TAD_TABLERO_HMALVADO_
+#define TAD_TABLERO_HMALVADO_
 #include <iostream>
 #include "TAD_Casilla.h"
 using namespace std;
@@ -12,7 +12,15 @@ struct Tablero{
     int ocupadas;
 };
 
-void iniciarTablero(Tablero &t, string nombreArchivo);
+void vaciarTablero(Tablero &t);
+
+bool esPotenciaDe2(int num);
+
+int redondearPotencia2(int num);
+
+void iniciarTableroAleatorio(Tablero &t,int filasIniciales, int maximo);
+
+bool iniciarTablero(Tablero& t);
 
 void insertarValorTablero(Tablero &t,int fila,int columna,int valor);
 
@@ -38,10 +46,6 @@ void eliminarCasillasVaciasIntermedias(Tablero &t,int columna);
 
 int obtenerValorMaximo(Tablero t);
 
-
-#endif
-
-int obtenerValorMaximo(Tablero t);
-
+int obtenerPuntuacionTablero (Tablero t);
 
 #endif
