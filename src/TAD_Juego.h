@@ -8,9 +8,9 @@ struct Juego{
     int puntuacion;
 }
 
-void iniciarJuego(Juego juego);
-void jugar(Juego juego);
-void terminarJuego(Juego juego);
-void refrescarJuego(Juego juego);
+void iniciarJuego(Juego &g);
+void jugar(Juego g);
+void terminarJuego(Juego g);
+void refrescarJuego(Juego g);
 
 #endif // TAD_JUEGO_H
