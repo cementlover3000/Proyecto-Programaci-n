@@ -23,10 +23,3 @@ int obtenerValorCasilla(Casilla c);
 void vaciarCasilla(Casilla &c);
 
 #endif
-
-
-
-
-
-
-
