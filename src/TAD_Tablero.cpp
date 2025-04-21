@@ -256,14 +256,14 @@ int obtenerValorMaximo(Tablero t) {
 
 
 int obtenerPuntuacionTablero (Tablero t){
-	int ptos=0;
+	int puntos = 0;
 		for (int i = 0; i < numeroFilas(t); i++) {
 			for (int j = 0; j < numeroColumnas(t); j++) {
 				if (!casillaEstaVacia(t, i, j))
-					ptos = ptos + obtenerValorTablero(t, i, j);
+					puntos = puntos + obtenerValorTablero(t, i, j);
 			}
 		}
-	return ptos;
+	return puntos;
 }
 
 
