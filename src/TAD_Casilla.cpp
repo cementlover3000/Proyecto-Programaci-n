@@ -26,3 +26,5 @@ int obtenerValorCasilla(Casilla c) {
 void vaciarCasilla(Casilla &c) {
     c.ocupadas = 0;
 }
+
+
