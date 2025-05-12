@@ -7,8 +7,8 @@ const int MAX = 1;
 typedef int tVector[MAX];
 
 struct Casilla {
-	tVector vector;
-	int ocupadas;
+    tVector vector;
+    int ocupadas;
 };
 
 
