@@ -19,5 +19,3 @@ void pruebaVaciarCasilla();
 
 #endif
 
-
-
