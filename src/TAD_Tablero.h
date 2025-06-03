@@ -4,13 +4,21 @@
 #include "TAD_Casilla.h"
 using namespace std;
 
-const int FILAS=6;
-const int COLUMNAS=5;
+const int FILAS = 7;
+const int COLUMNAS = 7;;
 typedef Casilla tMatriz[FILAS][COLUMNAS];
 struct Tablero{
-	tMatriz tablero;
-	int ocupadas;
+    tMatriz tablero;
+    int ocupadas;
 };
+
+void vaciarTablero(Tablero& t);
+
+bool esPotenciaDe2(int num);
+
+int redondearPotencia2(int num);
+
+void iniciarTableroAleatorio (Tablero &t, int filas, int columnas, int filasIniciales, int maximo);
 
 void iniciarTablero(Tablero &t);
 
@@ -37,5 +45,7 @@ void fusionarCasillasAdyacentes(Tablero &t,int fila,int columna);
 void eliminarCasillasVaciasIntermedias(Tablero &t,int columna);
 
 int obtenerValorMaximo(Tablero t);
+
+int obtenerPuntuacionTablero (Tablero t);
 
 #endif
