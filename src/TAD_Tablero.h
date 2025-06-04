@@ -10,13 +10,11 @@ typedef Casilla tMatriz[FILAS][COLUMNAS];
 struct Tablero{
     tMatriz tablero;
     int ocupadas;
+    int filas;
+    int columnas;
 };
 
 void vaciarTablero(Tablero& t);
-
-bool esPotenciaDe2(int num);
-
-int redondearPotencia2(int num);
 
 void iniciarTableroAleatorio (Tablero &t, int filas, int columnas, int filasIniciales, int maximo);
 
@@ -49,3 +47,11 @@ int obtenerValorMaximo(Tablero t);
 int obtenerPuntuacionTablero (Tablero t);
 
 #endif
+
+
+
+
+
+
+
+
