@@ -1,39 +1,45 @@
-#ifndef TAD_TABLERO_H_
-#define TAD_TABLERO_H_
+#ifndef PRUEBASTAD_TABLERO_H_
+#define PRUEBASTAD_TABLERO_H_
 #include <iostream>
 #include "TAD_Tablero.h"
 using namespace std;
 
-void pruebaIniciarTablero;
+void ejecutarPruebasTAD_Tablero();
 
-void pruebaInsertarValorTablero;
+void pruebaVaciarTablero();
 
-void pruebaCasillaEstaVacia;
+void pruebaIniciarTableroAleatorio ();
 
-void pruebaObtenerValorTablero;
+void pruebaIniciarTablero();
 
-void pruebaVaciarCasillaTablero;
+void pruebaInsertarValorTablero();
 
-void pruebaColumnaEstaLlena;
+void pruebaCasillaEstaVacia();
 
-void pruebaFilaPrimeraCasillaVacia;
+void pruebaObtenerValorTablero();
 
-void pruebaTableroEstaLleno;
+void pruebaVaciarCasillaTablero();
 
-void pruebaNumeroFilas;
+void pruebaColumnaEstaLlena();
 
-void pruebaNumeroColumnas;
+void pruebaFilaPrimeraCasillaVacia();
 
-void pruebaFusionarCasillasAdyacentes;
+void pruebaTableroEstaLleno();
 
-void pruebaEliminarCasillasVaciasIntermedias;
+void pruebaFusionarCasillasAdyacentes();
 
-void pruebaObtenerValorMaximo;
+void pruebaEliminarCasillasVaciasIntermedias();
 
-void ejecutarPruebasTAD_Tablero;
+void pruebaObtenerValorMaximo();
 
+void pruebaObtenerPuntuacionTablero ();
 
 
 #endif
+
+
+
+
+
 
 
