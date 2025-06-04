@@ -34,10 +34,6 @@ int filaPrimeraCasillaVacia(Tablero t,int columna);
 
 bool tableroEstaLleno(Tablero t);
 
-int numeroFilas(Tablero t);
-
-int numeroColumnas(Tablero t);
-
 void fusionarCasillasAdyacentes(Tablero &t,int fila,int columna);
 
 void eliminarCasillasVaciasIntermedias(Tablero &t,int columna);
