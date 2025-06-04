@@ -1,5 +1,5 @@
 #ifndef TAD_TABLERO_H_
-#define TAD_TABLERO_H
+#define TAD_TABLERO_H_
 #include <iostream>
 #include "TAD_Casilla.h"
 using namespace std;
