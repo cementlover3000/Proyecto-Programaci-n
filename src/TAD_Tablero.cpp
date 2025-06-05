@@ -23,7 +23,6 @@ void iniciarTableroAleatorio (Tablero &t, int filas, int columnas, int filasInic
     for (i = 0; i < filasIniciales; i++) {
    	 for (j = 0; j < columnas; j++) {
    		 insertarValorTablero(t, i, j, pow(2,rand()%maximo + 1));
-   		 t.ocupadas++;
    	 }
     }
 }
@@ -47,7 +46,6 @@ void iniciarTablero(Tablero& t) {
             	int valor;
             	archivo >> valor;
             	insertarValorTablero(t, i, j, valor);
-            	t.ocupadas++;
         	}
     	}
 	}
@@ -60,7 +58,7 @@ void iniciarTablero(Tablero& t) {
 void insertarValorTablero(Tablero &t, int fila, int columna, int valor){
     vaciarCasillaTablero(t,fila,columna);
 	insertarValorCasilla(t.tablero[fila][columna], valor);
-	t.ocupadas = t.ocupadas+1;
+	t.ocupadas = t.ocupadas + 1;
 }
 
 
@@ -73,8 +71,10 @@ int obtenerValorTablero(Tablero t, int fila, int columna) {
 }
 
 void vaciarCasillaTablero(Tablero &t, int fila, int columna) {
-    vaciarCasilla(t.tablero[fila][columna]);
-    t.ocupadas = t.ocupadas-1;
+    if(!casillaEstaVacia(t, fila, columna)){
+   	 vaciarCasilla(t.tablero[fila][columna]);
+   	 t.ocupadas = t.ocupadas-1;
+    }
 }
 
 bool columnaEstaLlena(Tablero t, int columna) {
@@ -175,7 +175,7 @@ void eliminarCasillasVaciasIntermedias(Tablero &t, int columna) {
    	 else {
    		 if (cuantos > 0) {
    			 int valor;
-   			 valor = t.tablero[fila][columna];
+   			 valor = obtenerValorTablero(t, fila, columna);
    			 vaciarCasillaTablero(t, fila - cuantos, columna);
    		 	insertarValorTablero(t, fila - cuantos, columna, valor);
        		 vaciarCasillaTablero(t, fila, columna);
@@ -219,6 +219,7 @@ int obtenerPuntuacionTablero (Tablero t){
    	 }
     return puntos;
 }
+
 
 
 
