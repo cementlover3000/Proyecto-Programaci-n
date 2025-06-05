@@ -5,7 +5,7 @@
 using namespace std;
 
 const int FILAS = 7;
-const int COLUMNAS = 7;;
+const int COLUMNAS = 7;
 typedef Casilla tMatriz[FILAS][COLUMNAS];
 struct Tablero{
     tMatriz tablero;
