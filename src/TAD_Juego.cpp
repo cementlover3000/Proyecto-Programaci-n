@@ -95,11 +95,11 @@ void jugar(Juego &g, string &mensaje, bool &salir, int &valor, int &fila, int &c
 						 refrescarJuego(g,mensaje,salir,valor,fila,columna);
 						}
 					 else if (obtenerValorTablero(g.tablero,numeroFilas(g.tablero)-1,columna)==valor){
-					 						 entornoQuitarNumeroLanzador(columna);
-					 						 entornoPonerNumero(numeroFilas(g.tablero)-1, columna, valor*2);
-					 						 insertarValorTablero (g.tablero,numeroFilas(g.tablero)-1, columna, valor*2);
-					 						 fusionarCasillasAdyacentes(g.tablero,fila,columna);
-					 						 refrescarJuego(g,mensaje,salir,valor,fila,columna);
+					 		entornoQuitarNumeroLanzador(columna);
+					 		entornoPonerNumero(numeroFilas(g.tablero)-1, columna, valor*2);
+					 		insertarValorTablero (g.tablero,numeroFilas(g.tablero)-1, columna, valor*2);
+					 		fusionarCasillasAdyacentes(g.tablero,fila,columna);
+					 		refrescarJuego(g,mensaje,salir,valor,fila,columna);
 					 	}
 
 					break;
