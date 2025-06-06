@@ -42,12 +42,9 @@ int obtenerValorMaximo(Tablero t);
 
 int obtenerPuntuacionTablero (Tablero t);
 
+int numeroFilas(Tablero t);
+
+int numeroColumnas(Tablero t);
+
 #endif
-
-
-
-
-
-
-
 
