@@ -67,7 +67,14 @@ bool casillaEstaVacia(Tablero t, int fila, int columna) {
 }
 
 int obtenerValorTablero(Tablero t, int fila, int columna) {
-    return obtenerValorCasilla(t.tablero[fila][columna]);
+    int resultado;
+    if(casillaEstaVacia(t, fila, columna)){
+   	 resultado = 0;
+    }
+    else{
+   	 resultado = obtenerValorCasilla(t.tablero[fila][columna]);
+    }
+    return resultado;
 }
 
 void vaciarCasillaTablero(Tablero &t, int fila, int columna) {
@@ -97,7 +104,6 @@ int filaPrimeraCasillaVacia(Tablero t, int columna) {
   	  fila = -1;
 	}
 	else{
-        int fila;
         fila = 0;
         while(fila < t.filas && !estaVacia){
         	if (casillaEstaVacia(t, fila, columna)) {
@@ -219,6 +225,15 @@ int obtenerPuntuacionTablero (Tablero t){
    	 }
     return puntos;
 }
+
+int numeroFilas(Tablero t){
+    return t.filas;
+}
+
+int numeroColumnas(Tablero t){
+    return t.columnas;
+}
+
 
 
 
