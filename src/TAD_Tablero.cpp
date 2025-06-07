@@ -134,7 +134,6 @@ void fusionarCasillasAdyacentes(Tablero &t, int fila, int columna) {
     if (valorArriba == valorActual) {
    	 sumaFusionada = sumaFusionada + valorArriba;
    	 vaciarCasillaTablero(t, fila - 1, columna);
-   	 t.ocupadas=t.ocupadas-1;
    }
 
    int valorAbajo;
@@ -142,7 +141,6 @@ void fusionarCasillasAdyacentes(Tablero &t, int fila, int columna) {
    if (valorAbajo == valorActual) {
    	 sumaFusionada = sumaFusionada + valorAbajo;
    	 vaciarCasillaTablero(t, fila + 1, columna);
-   	 t.ocupadas=t.ocupadas-1;
    }
 
    int valorIzquierda;
@@ -150,7 +148,6 @@ void fusionarCasillasAdyacentes(Tablero &t, int fila, int columna) {
    if (valorIzquierda == valorActual) {
    	 sumaFusionada = sumaFusionada + valorIzquierda;
    	 vaciarCasillaTablero(t, fila, columna - 1);
-   	 t.ocupadas=t.ocupadas-1;
    }
 
    int valorDerecha;
@@ -158,7 +155,6 @@ void fusionarCasillasAdyacentes(Tablero &t, int fila, int columna) {
    if (valorDerecha == valorActual) {
    	 sumaFusionada = sumaFusionada + valorDerecha;
    	 vaciarCasillaTablero(t, fila, columna + 1);
-   	 t.ocupadas=t.ocupadas-1;
    }
 
    int nuevoValor;
