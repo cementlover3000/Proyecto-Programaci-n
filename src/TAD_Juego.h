@@ -1,12 +1,11 @@
 #ifndef TAD_JUEGO_H
 #define TAD_JUEGO_H
-
 #include "TAD_Tablero.h"
 
 struct Juego{
-    Tablero tablero;
-    int puntuacion;
-    int piedad;
+	Tablero tablero;
+	int puntuacion;;
+	int vidas;
 };
 
 void iniciarJuego(Juego &g);
@@ -14,4 +13,5 @@ void jugar(Juego &g, string &mensaje, bool &salir, int &valor, int &fila, int &c
 void terminarJuego(Juego g, string mensaje);
 void refrescarJuego(Juego &g, string &mensaje, bool &salir, int &valor, int &fila, int &columna );
 
-#endif // TAD_JUEGO_H
+#endif
+
