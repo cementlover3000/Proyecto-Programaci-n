@@ -34,12 +34,12 @@ void pruebaObtenerValorMaximo();
 
 void pruebaObtenerPuntuacionTablero ();
 
+void pruebaNumeroFilas();
+
+void pruebaNumeroColumnas();
+
+
 
 #endif
-
-
-
-
-
 
 
