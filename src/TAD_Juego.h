@@ -5,7 +5,6 @@
 struct Juego{
 	Tablero tablero;
 	int puntuacion;;
-	int vidas;
 };
 
 void iniciarJuego(Juego &g);
@@ -14,4 +13,7 @@ void terminarJuego(Juego g, string mensaje);
 void refrescarJuego(Juego &g, string &mensaje, bool &salir, int &valor, int &fila, int &columna );
 
 #endif
+
+
+
 
