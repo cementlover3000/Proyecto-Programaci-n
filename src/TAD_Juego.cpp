@@ -17,20 +17,13 @@ void iniciarJuego(Juego &g) {
     	entornoIniciar(numFilas, numColumnas);
     	int fila;
     	int columna;
-    	for (fila = 0; fila < numFilas; fila++) {
-        	for (columna = 0; columna < numColumnas; columna++) {
-       		 if(fila < filasIniciales){
-       			 if(comoIniciar == 0){
-       				 entornoPonerNumero(fila, columna, m[fila][columna]);
-       			 }
-       			 else{
-       				 entornoPonerNumero(fila, columna, pow(2, rand()%comoIniciar+1));
-       			 }
-       		 }
-       		 else{
-       			 entornoEliminarNumero(fila, columna);
-       		 }
-        	}
+    	for (fila = 0; fila < numeroFilas(g.tablero); fila++) {
+   				 for (columna = 0; columna < numeroColumnas(g.tablero); columna++){
+   					 if (casillaEstaVacia(g.tablero,fila,columna))
+   						 entornoEliminarNumero(fila, columna);
+   					 else
+   						 entornoPonerNumero(fila, columna, obtenerValorTablero(g.tablero,fila, columna));
+   				 }
     	}
     	g.puntuacion = 0;
     	entornoPonerPuntuacion(g.puntuacion);
@@ -40,15 +33,15 @@ void iniciarJuego(Juego &g) {
 
 void refrescarJuego (Juego &g, string &mensaje, bool &salir, int &valor, int &fila, int &columna ){
     srand (time(NULL));
-    int maxPotencia = log2(obtenerValorMaximo(g.tablero));
-    maxPotencia = max(1, min(11, maxPotencia));
+    int maxPotencia;
+    maxPotencia = log2(obtenerValorMaximo(g.tablero));
     valor = pow(2, rand() % maxPotencia + 1);
     entornoPonerNumeroLanzador(valor, columna);
-    g.puntuacion = valor + obtenerPuntuacionTablero(g.tablero);
     entornoPonerPuntuacion(g.puntuacion);
-    entornoContadorAyuda(g.vidas);
-    for (int i = 0; i < numeroFilas(g.tablero); i++) {
-   		 for (int j = 0; j < numeroColumnas(g.tablero); j++){
+    int i;
+    int j;
+    for (i = 0; i < numeroFilas(g.tablero); i++) {
+   		 for (j = 0; j < numeroColumnas(g.tablero); j++){
    			 if (casillaEstaVacia(g.tablero,i,j))
    				 entornoEliminarNumero(i,j);
    			 else
@@ -58,10 +51,10 @@ void refrescarJuego (Juego &g, string &mensaje, bool &salir, int &valor, int &fi
     }
 
     if (tableroEstaLleno(g.tablero)){
-   	 salir=true;
+   	 salir = true;
    	 mensaje="Has perdido";
-   	 for (int i = 0; i < numeroColumnas(g.tablero);i++){
-   		 if (obtenerValorTablero(g.tablero,numeroFilas(g.tablero)-1,i)==valor){
+   	 for (i = 0; i < numeroColumnas(g.tablero);i++){
+   		 if (obtenerValorTablero(g.tablero,numeroFilas(g.tablero) - 1,i) == valor){
    			 salir=false;
    			 mensaje = "";
    		 }
@@ -76,21 +69,28 @@ void jugar(Juego &g, string &mensaje, bool &salir, int &valor, int &fila, int &c
 
    			 switch (tecla) {
    			 case TEnter:
-   				 fila = filaPrimeraCasillaVacia(g.tablero, columna);
    				  if (!columnaEstaLlena(g.tablero,columna)){
+   					  fila = filaPrimeraCasillaVacia(g.tablero, columna);
    					  entornoQuitarNumeroLanzador(columna);
    					  entornoPonerNumero(fila, columna, valor);
    					  insertarValorTablero (g.tablero,fila,columna,valor);
-   					  fusionarCasillasAdyacentes(g.tablero,fila,columna);
+   					  entornoPausa(0.5);
+   					  g.puntuacion = g.puntuacion + fusionarCasillasAdyacentes(g.tablero, fila, columna);
+   					  eliminarCasillasVaciasIntermedias(g.tablero, columna);
+   					  eliminarCasillasVaciasIntermedias(g.tablero, columna - 1);
+   					  eliminarCasillasVaciasIntermedias(g.tablero, columna + 1);
    					  refrescarJuego(g,mensaje,salir,valor,fila,columna);
    					 }
-   				  else if (obtenerValorTablero(g.tablero,numeroFilas(g.tablero)-1,columna)==valor){
+   				  else {
+   					  if (obtenerValorTablero(g.tablero,numeroFilas(g.tablero) -1,columna) == valor){
    				     	 entornoQuitarNumeroLanzador(columna);
    				     	 entornoPonerNumero(numeroFilas(g.tablero)-1, columna, valor*2);
    				     	 insertarValorTablero (g.tablero,numeroFilas(g.tablero)-1, columna, valor*2);
-   				     	 fusionarCasillasAdyacentes(g.tablero,fila,columna);
+   				     	 entornoPausa(0.5);
+   				     	 g.puntuacion = g.puntuacion + valor * 2;
    				     	 refrescarJuego(g,mensaje,salir,valor,fila,columna);
-   				      }
+   					  }
+   				  }
 
    				 break;
    			 case TDerecha:
@@ -136,6 +136,8 @@ void terminarJuego(Juego g, string mensaje){
     entornoPausa(1.222);
     entornoTerminar();
 }
+
+
 
 
 
