@@ -123,7 +123,7 @@ bool tableroEstaLleno(Tablero t) {
 
 
 
-void fusionarCasillasAdyacentes(Tablero &t, int fila, int columna) {
+int fusionarCasillasAdyacentes(Tablero &t, int fila, int columna) {
     int valorActual;
     valorActual = obtenerValorTablero(t, fila, columna);
     int sumaFusionada;
@@ -164,6 +164,14 @@ void fusionarCasillasAdyacentes(Tablero &t, int fila, int columna) {
    }
    vaciarCasillaTablero(t, fila, columna);
    insertarValorTablero(t, fila, columna, nuevoValor);
+   int resultado;
+   if(nuevoValor == valorActual){
+   	resultado = 0;
+   }
+   else{
+   	resultado = nuevoValor;
+   }
+   return resultado;
 }
 
 void eliminarCasillasVaciasIntermedias(Tablero &t, int columna) {
@@ -229,7 +237,6 @@ int numeroFilas(Tablero t){
 int numeroColumnas(Tablero t){
     return t.columnas;
 }
-
 
 
 
