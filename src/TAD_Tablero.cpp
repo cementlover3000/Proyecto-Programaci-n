@@ -215,21 +215,6 @@ int obtenerValorMaximo(Tablero t) {
     return maxValor;
 }
 
-
-int obtenerPuntuacionTablero (Tablero t){
-    int puntos;
-    int i;
-    int j;
-    puntos = 0;
-   	 for (i = 0; i < t.filas; i++) {
-   		 for (j = 0; j < t.columnas; j++) {
-   			 if (!casillaEstaVacia(t, i, j))
-   				 puntos = puntos + obtenerValorTablero(t, i, j);
-   		 }
-   	 }
-    return puntos;
-}
-
 int numeroFilas(Tablero t){
     return t.filas;
 }
