@@ -32,8 +32,6 @@ void pruebaEliminarCasillasVaciasIntermedias();
 
 void pruebaObtenerValorMaximo();
 
-void pruebaObtenerPuntuacionTablero ();
-
 void pruebaNumeroFilas();
 
 void pruebaNumeroColumnas();
@@ -41,5 +39,6 @@ void pruebaNumeroColumnas();
 
 
 #endif
+
 
 
