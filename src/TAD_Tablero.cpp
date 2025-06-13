@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cmath>
 #include "TAD_Tablero.h"
+#include "entorno.h"
 using namespace std;
 
 void vaciarTablero(Tablero& t){
@@ -22,7 +23,9 @@ void iniciarTableroAleatorio (Tablero &t, int filas, int columnas, int filasInic
     int j;
     for (i = 0; i < filasIniciales; i++) {
    	 for (j = 0; j < columnas; j++) {
+   		 do{
    		 insertarValorTablero(t, i, j, pow(2,rand()%maximo + 1));
+   		 } while(pistaFusionarCasillasAdyacentes(t, i, j) != 0);
    	 }
     }
 }
@@ -34,18 +37,26 @@ void iniciarTablero(Tablero& t) {
 	archivo >> filas >> columnas >> comoIniciar >> filasIniciales;
 
 	vaciarTablero(t);
-	t.ocupadas = 0;
 	t.filas = filas;
 	t.columnas = columnas;
 
 	if (comoIniciar == 0) {
-   	 int i;
-   	 int j;
-    	for (i = 0; i < filasIniciales; i++) {
+    	string cadena;
+    	int i, j;
+    	getline(archivo, cadena);
+    	for (i = 0; i < filas; i++) {
         	for (j = 0; j < columnas; j++) {
-            	int valor;
-            	archivo >> valor;
-            	insertarValorTablero(t, i, j, valor);
+            	if(i < filasIniciales){
+           		 if (j < columnas - 1) {
+           		  	getline(archivo, cadena, ' ');
+                	}
+                	else {
+           		  	getline(archivo, cadena);
+                	}
+                	int valor;
+                	valor = atoi(cadena.c_str());
+                	insertarValorTablero(t, i, j, valor);
+            	}
         	}
     	}
 	}
@@ -53,6 +64,9 @@ void iniciarTablero(Tablero& t) {
     	iniciarTableroAleatorio(t, filas, columnas, filasIniciales, comoIniciar);
 	}
 }
+
+
+
 
 
 void insertarValorTablero(Tablero &t, int fila, int columna, int valor){
@@ -101,7 +115,7 @@ int filaPrimeraCasillaVacia(Tablero t, int columna) {
 	bool estaVacia;
 	estaVacia = false;
     if (columnaEstaLlena(t, columna)) {
-  	  fila = -1;
+  	  fila = t.filas;
 	}
 	else{
         fila = 0;
@@ -121,55 +135,109 @@ bool tableroEstaLleno(Tablero t) {
     return t.ocupadas == t.filas * t.columnas;
 }
 
+int fusionarCasillasAdyacentesRecursivo(Tablero &t, int fila, int columna) {
+    int valorActual;
+    valorActual = obtenerValorTablero(t, fila, columna);
+    int sumaFusionada;
+    sumaFusionada = valorActual;
+    vaciarCasillaTablero(t, fila, columna);
 
+    if(fila != 0){
+   	 int valorArriba;
+   	 valorArriba = obtenerValorTablero(t, fila - 1, columna);
+   	 if (valorArriba == valorActual) {
+   	 	sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila - 1, columna);
+   	  }
+    }
+
+   if(fila != (t.filas - 1)){
+   	int valorAbajo;
+   	valorAbajo = obtenerValorTablero(t, fila + 1, columna);
+   	if (valorAbajo == valorActual) {
+   		sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila + 1, columna);
+   	}
+   }
+   if(columna != 0){
+   	int valorIzquierda;
+   	valorIzquierda = obtenerValorTablero(t, fila, columna - 1);
+   	if (valorIzquierda == valorActual) {
+   		sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila, columna - 1);
+   	}
+   }
+
+   if(columna != t.columnas - 1){
+   	int valorDerecha;
+   	valorDerecha = obtenerValorTablero(t, fila, columna + 1);
+   	if (valorDerecha == valorActual) {
+   		sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila, columna + 1);
+   	}
+   }
+
+   return sumaFusionada;
+}
 
 int fusionarCasillasAdyacentes(Tablero &t, int fila, int columna) {
     int valorActual;
     valorActual = obtenerValorTablero(t, fila, columna);
     int sumaFusionada;
     sumaFusionada = valorActual;
+    vaciarCasillaTablero(t, fila, columna);
 
-    int valorArriba;
-    valorArriba = obtenerValorTablero(t, fila - 1, columna);
-    if (valorArriba == valorActual) {
-   	 sumaFusionada = sumaFusionada + valorArriba;
-   	 vaciarCasillaTablero(t, fila - 1, columna);
+    if(fila != 0){
+   	 int valorArriba;
+   	 valorArriba = obtenerValorTablero(t, fila - 1, columna);
+   	 if (valorArriba == valorActual) {
+   	 	sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila - 1, columna);
+   	 	vaciarCasillaTablero(t, fila - 1, columna);
+   	  }
+    }
+
+   if(fila != (t.filas - 1)){
+   	int valorAbajo;
+   	valorAbajo = obtenerValorTablero(t, fila + 1, columna);
+   	if (valorAbajo == valorActual) {
+   		sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila + 1, columna);
+   	 	vaciarCasillaTablero(t, fila + 1, columna);
+   	}
+   }
+   if(columna != 0){
+   	int valorIzquierda;
+   	valorIzquierda = obtenerValorTablero(t, fila, columna - 1);
+   	if (valorIzquierda == valorActual) {
+   		sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila, columna - 1);
+   	 	vaciarCasillaTablero(t, fila, columna - 1);
+   	}
    }
 
-   int valorAbajo;
-   valorAbajo = obtenerValorTablero(t, fila + 1, columna);
-   if (valorAbajo == valorActual) {
-   	 sumaFusionada = sumaFusionada + valorAbajo;
-   	 vaciarCasillaTablero(t, fila + 1, columna);
+   if(columna != t.columnas - 1){
+   	int valorDerecha;
+   	valorDerecha = obtenerValorTablero(t, fila, columna + 1);
+   	if (valorDerecha == valorActual) {
+   		sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila, columna + 1);
+   	 	vaciarCasillaTablero(t, fila, columna + 1);
+   	}
    }
 
-   int valorIzquierda;
-   valorIzquierda = obtenerValorTablero(t, fila, columna - 1);
-   if (valorIzquierda == valorActual) {
-   	 sumaFusionada = sumaFusionada + valorIzquierda;
-   	 vaciarCasillaTablero(t, fila, columna - 1);
-   }
 
-   int valorDerecha;
-   valorDerecha = obtenerValorTablero(t, fila, columna + 1);
-   if (valorDerecha == valorActual) {
-   	 sumaFusionada = sumaFusionada + valorDerecha;
-   	 vaciarCasillaTablero(t, fila, columna + 1);
-   }
 
    int nuevoValor;
    nuevoValor = 1;
    while (nuevoValor < sumaFusionada) {
   	 nuevoValor = nuevoValor * 2;
    }
-   vaciarCasillaTablero(t, fila, columna);
    insertarValorTablero(t, fila, columna, nuevoValor);
+   int i;
+   for(i = 0; i < t.columnas; i++){
+   	eliminarCasillasVaciasIntermedias(t, i);
+   }
    int resultado;
+   resultado = 0;
    if(nuevoValor == valorActual){
    	resultado = 0;
    }
    else{
-   	resultado = nuevoValor;
+   	if()
+   	resultado = resultado + nuevoValor + fusionarCasillasAdyacentes(t, filaPrimeraCasillaVacia(t, columna) - 1, columna);
    }
    return resultado;
 }
@@ -200,7 +268,7 @@ int obtenerValorMaximo(Tablero t) {
 	int valor;
 	int fila;
 	int columna;
-    maxValor = 0; //Porque el valor mínimo que puede haber en el tablero es 2
+    maxValor = 2; //Porque el valor mínimo que puede haber en el tablero es 2
     for (fila = 0; fila < t.filas; fila++) {
    	 for (columna = 0; columna < t.columnas; columna++) {
    		 if (!casillaEstaVacia(t, fila, columna)) {
@@ -215,6 +283,8 @@ int obtenerValorMaximo(Tablero t) {
     return maxValor;
 }
 
+
+
 int numeroFilas(Tablero t){
     return t.filas;
 }
@@ -223,11 +293,73 @@ int numeroColumnas(Tablero t){
     return t.columnas;
 }
 
+int pistaFusionarCasillasAdyacentes(Tablero t, int fila, int columna) {
+    int valorActual;
+    valorActual = obtenerValorTablero(t, fila, columna);
+    int sumaFusionada;
+    sumaFusionada = valorActual;
+    vaciarCasillaTablero(t, fila, columna);
+
+    if(fila != 0){
+   	 int valorArriba;
+   	 valorArriba = obtenerValorTablero(t, fila - 1, columna);
+   	 if (valorArriba == valorActual) {
+   	 	sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila - 1, columna);
+   	 	vaciarCasillaTablero(t, fila - 1, columna);
+   	  }
+    }
+
+   if(fila != (t.filas - 1)){
+   	int valorAbajo;
+   	valorAbajo = obtenerValorTablero(t, fila + 1, columna);
+   	if (valorAbajo == valorActual) {
+   		sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila + 1, columna);
+   	 	vaciarCasillaTablero(t, fila + 1, columna);
+   	}
+   }
+   if(columna != 0){
+   	int valorIzquierda;
+   	valorIzquierda = obtenerValorTablero(t, fila, columna - 1);
+   	if (valorIzquierda == valorActual) {
+   		sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila, columna - 1);
+   	 	vaciarCasillaTablero(t, fila, columna - 1);
+   	}
+   }
+
+   if(columna != t.columnas - 1){
+   	int valorDerecha;
+   	valorDerecha = obtenerValorTablero(t, fila, columna + 1);
+   	if (valorDerecha == valorActual) {
+   		sumaFusionada = sumaFusionada + fusionarCasillasAdyacentesRecursivo(t, fila, columna + 1);
+   	 	vaciarCasillaTablero(t, fila, columna + 1);
+   	}
+   }
 
 
 
-
-
+   int nuevoValor;
+   nuevoValor = 1;
+   while (nuevoValor < sumaFusionada) {
+  	 nuevoValor = nuevoValor * 2;
+   }
+   insertarValorTablero(t, fila, columna, nuevoValor);
+   eliminarCasillasVaciasIntermedias(t, columna);
+  		 if(columna != 0){
+  			  eliminarCasillasVaciasIntermedias(t, columna - 1);
+  		 }
+   	 if(columna != (numeroColumnas(t) - 1)){
+  			  eliminarCasillasVaciasIntermedias(t, columna + 1);
+   	 }
+   int resultado;
+   if(nuevoValor == valorActual){
+   	resultado = 0;
+   }
+   else{
+   	resultado = nuevoValor;
+   	resultado = resultado + fusionarCasillasAdyacentes(t, filaPrimeraCasillaVacia(t, columna) - 1, columna);
+   }
+   return resultado;
+}
 
 
 
