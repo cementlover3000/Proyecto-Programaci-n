@@ -40,12 +40,11 @@ void eliminarCasillasVaciasIntermedias(Tablero &t,int columna);
 
 int obtenerValorMaximo(Tablero t);
 
-int obtenerPuntuacionTablero (Tablero t);
-
 int numeroFilas(Tablero t);
 
 int numeroColumnas(Tablero t);
 
-#endif
+int pistaFusionarCasillasAdyacentes(Tablero t, int fila, int columna);
 
+#endif
 
