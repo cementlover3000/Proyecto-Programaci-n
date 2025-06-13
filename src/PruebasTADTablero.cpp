@@ -1,5 +1,6 @@
 #include <iostream>
 #include "PruebasTAD_Tablero.h"
+#include "fstream"
 using namespace std;
 
 bool esPotenciaDeDos(int valor) {
@@ -13,6 +14,72 @@ bool esPotenciaDeDos(int valor) {
 	resultado = valor == 1;
 	return resultado;
 }
+
+bool compararTableros(Tablero& t1, Tablero& t2) {
+    bool resultado;
+    resultado = true;
+	if (t1.filas != t2.filas || t1.columnas != t2.columnas) {
+    	resultado = false;
+	}
+	int i;
+	int j;
+	for (i = 0; i < t1.filas; ++i) {
+    	for (j = 0; j < t1.columnas; ++j) {
+        	if (obtenerValorTablero(t1, i, j) != obtenerValorTablero(t2, i, j)) {
+       		 resultado = false;
+        	}
+    	}
+	}
+
+	return resultado;
+}
+
+
+void pruebaIniciarTablero() {
+	Tablero tableroLeido;
+	iniciarTablero(tableroLeido);
+	Tablero tableroEsperado;
+	ifstream archivo("numberTiles.cnf");
+
+
+	int filas, columnas, comoIniciar, filasIniciales;
+	archivo >> filas >> columnas >> comoIniciar >> filasIniciales;
+
+	tableroEsperado.filas = filas;
+	tableroEsperado.columnas = columnas;
+	vaciarTablero(tableroEsperado);
+	if (comoIniciar == 0) {
+    	string cadena;
+    	getline(archivo, cadena);
+    	int i;
+    	int j;
+    	for (i = 0; i < filas; i++) {
+        	for (j = 0; j < columnas; j++) {
+            	if (i < filasIniciales) {
+                	if (j < columnas - 1) {
+                    	std::getline(archivo, cadena, ' ');
+                	} else {
+                    	std::getline(archivo, cadena);
+                	}
+                	int valor = std::atoi(cadena.c_str());
+                	insertarValorTablero(tableroEsperado, i, j, valor);
+            	}
+        	}
+    	}
+	}
+
+	if (compararTableros(tableroLeido, tableroEsperado)) {
+    	cout << "Prueba Iniciar Tablero: OK" << endl;
+	}
+	else {
+    	cout << "Prueba Iniciar Tablero: ERROR" << endl;
+	}
+}
+
+
+
+
+
 
 void pruebaVaciarTablero() {
 	Tablero t;
@@ -239,7 +306,7 @@ void pruebaFilaPrimeraCasillaVacia(){
     	insertarValorTablero(t, fila, 0, 2);
     }
     resultado = filaPrimeraCasillaVacia(t, 0);
-    if (resultado == -1) {
+    if (resultado == t.filas) {
     	cout << "Prueba 1 Fila Primera Casilla Vacia: OK" << endl;
     }
     else {
@@ -321,23 +388,25 @@ void pruebaFusionarCasillasAdyacentes(){
     	t.columnas = COLUMNAS;
 
     	// Prueba 1
+    	int resultado;
     	vaciarTablero(t);
     	insertarValorTablero(t, 1, 1, 2);
     	insertarValorTablero(t, 1, 2, 2);
-    	fusionarCasillasAdyacentes(t, 1, 1);
-    	if (obtenerValorTablero(t, 1, 1) == 4 && casillaEstaVacia(t, 1, 2)) {
+    	resultado = fusionarCasillasAdyacentes(t, 1, 1);
+    	if (obtenerValorTablero(t, 1, 1) == 4 && casillaEstaVacia(t, 1, 2) && resultado == 4) {
         	cout << "Prueba 1 Fusionar Casillas Adyacentes: OK" << endl;
     	}
     	else {
         	cout << "Prueba 1 Fusionar Casillas Adyacentes: ERROR" << endl;
     	}
 
+
     	//Prueba 2
     	vaciarTablero(t);
     	insertarValorTablero(t, 2, 1, 2);
     	insertarValorTablero(t, 2, 2, 4);
-    	fusionarCasillasAdyacentes(t, 2, 1);
-    	if (obtenerValorTablero(t, 2, 1) == 2 && obtenerValorTablero(t, 2, 2) == 4) {
+    	resultado = fusionarCasillasAdyacentes(t, 2, 1);
+    	if (obtenerValorTablero(t, 2, 1) == 2 && obtenerValorTablero(t, 2, 2) == 4 && resultado == 0) {
         	cout << "Prueba 2 Fusionar Casillas Adyacentes: OK" << endl;
     	}
     	else {
@@ -349,8 +418,8 @@ void pruebaFusionarCasillasAdyacentes(){
     	insertarValorTablero(t, 3, 1, 2);
     	insertarValorTablero(t, 2, 1, 2);
     	insertarValorTablero(t, 3, 2, 2);
-    	fusionarCasillasAdyacentes(t, 3, 1);
-    	if (obtenerValorTablero(t, 3, 1) == 8 && casillaEstaVacia(t, 2, 1) && casillaEstaVacia(t, 3, 2)) {
+    	resultado = fusionarCasillasAdyacentes(t, 3, 1);
+    	if (obtenerValorTablero(t, 3, 1) == 8 && casillaEstaVacia(t, 2, 1) && casillaEstaVacia(t, 3, 2) && resultado == 8) {
         	cout << "Prueba 3 Fusionar Casillas Adyacentes: OK" << endl;
     	}
     	else {
@@ -449,56 +518,6 @@ void pruebaObtenerValorMaximo() {
 }
 
 
-void pruebaObtenerPuntuacionTablero() {
-	Tablero t;
-	t.filas = FILAS;
-	t.columnas = COLUMNAS;
-
-	// Prueba 1
-	vaciarTablero(t);
-	int puntuacion;
-	puntuacion = obtenerPuntuacionTablero(t);
-	if (puntuacion == 0) {
-    	cout << "Prueba 1 Obtener Puntuacion Tablero: OK" << endl;
-	}
-	else {
-    	cout << "Prueba 1 Obtener Puntuacion Tablero: ERROR" << endl;
-	}
-	// Prueba 2
-	vaciarTablero(t);
-	insertarValorTablero(t, 0, 0, 2);
-	insertarValorTablero(t, 1, 1, 8);
-	insertarValorTablero(t, 2, 2, 4);
-	puntuacion = obtenerPuntuacionTablero(t);
-	if (puntuacion == (2 + 8 + 4)) {
-    	cout << "Prueba 2 Obtener Puntuacion Tablero: OK" << endl;
-	}
-	else {
-    	cout << "Prueba 2 Obtener Puntuacion Tablero: ERROR" << endl;
-	}
-	// Prueba 5
-	vaciarTablero(t);
-	int i;
-	int j;
-	int suma;
-	int valor;
-	suma = 0;
-	for (i = 0; i < FILAS; i++) {
-    	for (j = 0; j < COLUMNAS; j++) {
-        	valor = (i + 1) * (j + 1);
-        	insertarValorTablero(t, i, j, valor);
-        	suma = suma + valor;
-    	}
-	}
-	puntuacion = obtenerPuntuacionTablero(t);
-	if (puntuacion == suma) {
-    	cout << "Prueba 3 Obtener Puntuacion Tablero: OK" << endl;
-	}
-	else {
-    	cout << "Prueba 3 Obtener Puntuacion Tablero: ERROR" << endl;
-	}
-}
-
 void pruebaNumeroFilas() {
 	Tablero t;
 	t.filas = FILAS;
@@ -527,7 +546,7 @@ void ejecutarPruebasTAD_Tablero() {
 
 	pruebaVaciarTablero();
 	pruebaIniciarTableroAleatorio();
-	//pruebaIniciarTablero();
+	pruebaIniciarTablero();
 	pruebaInsertarValorTablero();
 	pruebaCasillaEstaVacia();
 	pruebaObtenerValorTablero();
@@ -538,12 +557,47 @@ void ejecutarPruebasTAD_Tablero() {
 	pruebaFusionarCasillasAdyacentes();
 	pruebaEliminarCasillasVaciasIntermedias();
 	pruebaObtenerValorMaximo();
-	pruebaObtenerPuntuacionTablero();
 	pruebaNumeroFilas();
 	pruebaNumeroColumnas();
 
 	cout << "Fin Pruebas TAD_Tablero" << endl;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
