@@ -130,7 +130,7 @@ int numeroColumnas(Tablero t);
 /*
  * PRE: { 0 <= fila < n, 0 <= columna < n }
  * DESCRIPCIÓN: Realiza una simulación de fusión de casillas sin modificar el tablero original.
- *              Usado para verificar si una celda generada aleatoriamente tiene alguna fusión posible.
+ *              Usado para verificar si una casilla tiene alguna fusión posible.
  * POST: Devuelve la puntuación potencial.
  * COMPLEJIDAD: O(n²)
  */
