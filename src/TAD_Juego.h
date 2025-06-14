@@ -2,9 +2,9 @@
 #define TAD_JUEGO_H
 #include "TAD_Tablero.h"
 
-struct Juego{
-	Tablero tablero;
-	int puntuacion;;
+struct Juego {
+    Tablero tablero;   // Tablero lógico del juego
+    int puntuacion;    // Puntuación actual
 };
 
 /*
