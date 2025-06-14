@@ -66,11 +66,6 @@ void pruebaObtenerValorTablero();
  *              sin modificar el contador si ya estaba vacía.
  * COMPLEJIDAD: O(1)
  */
-/**
- * PRE: -
- * POST: Prueba vaciarCasillaTablero.
- * COMPLEJIDAD: O(1)
- */
 void pruebaVaciarCasillaTablero();
 
 /**
