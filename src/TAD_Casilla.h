@@ -1,5 +1,5 @@
-#ifndef CASILLA_H_
-#define CASILLA_H_
+#ifndef TAD_CASILLA_H_
+#define TAD_CASILLA_H_
 
 const int MAX = 1;  // Solo se almacena un valor por casilla en este TAD
 
