@@ -4,8 +4,6 @@
 #include "TAD_Tablero.h"
 using namespace std;
 
-void ejecutarPruebasTAD_Tablero();
-
 /**
  * DESCRIPCIÓN: Comprueba si un valor entero es una potencia de 2.
  * PRE: valor > 0
@@ -68,24 +66,75 @@ void pruebaObtenerValorTablero();
  *              sin modificar el contador si ya estaba vacía.
  * COMPLEJIDAD: O(1)
  */
+/**
+ * PRE: -
+ * POST: Prueba vaciarCasillaTablero.
+ * COMPLEJIDAD: O(1)
+ */
 void pruebaVaciarCasillaTablero();
 
+/**
+ * PRE: -
+ * POST: Prueba columnaEstaLlena.
+ * COMPLEJIDAD: O(n)  // Recorre una columna de n filas
+ */
 void pruebaColumnaEstaLlena();
 
+/**
+ * PRE: -
+ * POST: Prueba filaPrimeraCasillaVacia.
+ * COMPLEJIDAD: O(n)  // Busca casilla vacía en columna de n filas
+ */
 void pruebaFilaPrimeraCasillaVacia();
 
+/**
+ * PRE: -
+ * POST: Prueba tableroEstaLleno.
+ * COMPLEJIDAD: O(n^2)  // Recorre todo el tablero de n x n
+ */
 void pruebaTableroEstaLleno();
 
+/**
+ * PRE: -
+ * POST: Prueba fusionarCasillasAdyacentes.
+ * COMPLEJIDAD: O(1)
+ */
 void pruebaFusionarCasillasAdyacentes();
 
+/**
+ * PRE: -
+ * POST: Prueba eliminarCasillasVaciasIntermedias.
+ * COMPLEJIDAD: O(n)  // Recorre columna para compactar n filas
+ */
 void pruebaEliminarCasillasVaciasIntermedias();
 
+/**
+ * PRE: -
+ * POST: Prueba obtenerValorMaximo.
+ * COMPLEJIDAD: O(n^2)  // Recorre todo el tablero de n x n
+ */
 void pruebaObtenerValorMaximo();
 
+/**
+ * PRE: -
+ * POST: Prueba numeroFilas.
+ * COMPLEJIDAD: O(1)
+ */
 void pruebaNumeroFilas();
 
+/**
+ * PRE: -
+ * POST: Prueba numeroColumnas.
+ * COMPLEJIDAD: O(1)
+ */
 void pruebaNumeroColumnas();
 
+/**
+ * PRE: -
+ * POST: Ejecuta todas las pruebas del TAD Tablero.
+ * COMPLEJIDAD: Suma de las pruebas anteriores.
+ */
+void ejecutarPruebasTAD_Tablero();
 
 
 #endif
