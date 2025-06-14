@@ -9,7 +9,7 @@ void ejecutarPruebasTAD_Tablero();
 /**
  * DESCRIPCIÓN: Comprueba si un valor entero es una potencia de 2.
  * PRE: valor > 0
- * COMPLEJIDAD: O(log valor)
+ * COMPLEJIDAD: O(log(n))
  */
 bool esPotenciaDeDos(int valor);
 
