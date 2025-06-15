@@ -5,10 +5,6 @@
 #include "TAD_Casilla.h"
 using namespace std;
 
-// ----------------------------------------------------------------
-// Declaración de la interfaz pública de pruebas del TAD Casilla
-// ----------------------------------------------------------------
-
 /*
  * PRE:  { }
  * POST: Ejecuta la prueba de la función iniciar del TAD Casilla, mostrando el resultado por pantalla
