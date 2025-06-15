@@ -17,10 +17,6 @@ bool esPotenciaDeDos(int valor);
  */
 bool compararTableros(Tablero& t1, Tablero& t2);
 
-// -------------------------------------------------------------
-// PRUEBAS UNITARIAS
-// -------------------------------------------------------------
-
 /**
  * DESCRIPCIÓN: Verifica que la función iniciarTablero() inicializa correctamente el tablero,
  *              comparando contra la configuración leída desde archivo.
